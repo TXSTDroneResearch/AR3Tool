@@ -28,6 +28,16 @@
 #include <libARController/ARCONTROLLER_DICTIONARY_Key.h>
 #include <libARController/ARCONTROLLER_Dictionary.h>
 
+#if defined(_WIN32) && defined(_MSC_VER)
+#  if defined(AR_BUILDING_WIN32)
+#    define AR_EXPORT
+#  else
+#    define AR_EXPORT __declspec(dllimport)
+#  endif
+#else
+#  define AR_EXPORT
+#endif
+
 /*******************************
  * --- FEATURE generic --- 
  ******************************/
@@ -104,7 +114,7 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Generic_AddCallback (ARCONTROLLER_FEATU
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Generic_RemoveCallback (ARCONTROLLER_FEATURE_Generic_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_GENERIC_DRONESETTINGSCHANGED_SETTINGS; /**< Key of the argument </code>settings</code> of event <code>DroneSettingsChanged</code> in feature <code>Generic</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_GENERIC_DRONESETTINGSCHANGED_SETTINGS; /**< Key of the argument </code>settings</code> of event <code>DroneSettingsChanged</code> in feature <code>Generic</code> */
 
 /**
  * @brief Send a command <code>Default</code> in feature <code>Generic</code>
@@ -228,247 +238,247 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_ARDrone3_AddCallback (ARCONTROLLER_FEAT
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_ARDrone3_RemoveCallback (ARCONTROLLER_FEATURE_ARDrone3_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEORESOLUTIONSTATE_STREAMING; /**< Key of the argument </code>streaming</code> of event <code>MediaRecordStateVideoResolutionState</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEORESOLUTIONSTATE_RECORDING; /**< Key of the argument </code>recording</code> of event <code>MediaRecordStateVideoResolutionState</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEORESOLUTIONSTATE_STREAMING; /**< Key of the argument </code>streaming</code> of event <code>MediaRecordStateVideoResolutionState</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDSTATE_VIDEORESOLUTIONSTATE_RECORDING; /**< Key of the argument </code>recording</code> of event <code>MediaRecordStateVideoResolutionState</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_VIDEOEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_VIDEOEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_VIDEOEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIARECORDEVENT_VIDEOEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>ARDrone3</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateFlyingStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateFlyingStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_NAVIGATEHOMESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateNavigateHomeStateChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_NAVIGATEHOMESTATECHANGED_REASON; /**< Key of the argument </code>reason</code> of event <code>PilotingStateNavigateHomeStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_NAVIGATEHOMESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateNavigateHomeStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_NAVIGATEHOMESTATECHANGED_REASON; /**< Key of the argument </code>reason</code> of event <code>PilotingStateNavigateHomeStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_POSITIONCHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>PilotingStatePositionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_POSITIONCHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>PilotingStatePositionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_POSITIONCHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStatePositionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_POSITIONCHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>PilotingStatePositionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_POSITIONCHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>PilotingStatePositionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_POSITIONCHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStatePositionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDX; /**< Key of the argument </code>speedX</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDY; /**< Key of the argument </code>speedY</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDZ; /**< Key of the argument </code>speedZ</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDX; /**< Key of the argument </code>speedX</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDY; /**< Key of the argument </code>speedY</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDZ; /**< Key of the argument </code>speedZ</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED_ROLL; /**< Key of the argument </code>roll</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED_PITCH; /**< Key of the argument </code>pitch</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED_YAW; /**< Key of the argument </code>yaw</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED_ROLL; /**< Key of the argument </code>roll</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED_PITCH; /**< Key of the argument </code>pitch</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED_YAW; /**< Key of the argument </code>yaw</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AUTOTAKEOFFMODECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAutoTakeOffModeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AUTOTAKEOFFMODECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAutoTakeOffModeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ALTITUDECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStateAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ALTITUDECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStateAltitudeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE_ACCURACY; /**< Key of the argument </code>latitude_accuracy</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE_ACCURACY; /**< Key of the argument </code>longitude_accuracy</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE_ACCURACY; /**< Key of the argument </code>altitude_accuracy</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE_ACCURACY; /**< Key of the argument </code>latitude_accuracy</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE_ACCURACY; /**< Key of the argument </code>longitude_accuracy</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE_ACCURACY; /**< Key of the argument </code>altitude_accuracy</code> of event <code>PilotingStateGpsLocationChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_LANDINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateLandingStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_LANDINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateLandingStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED_AIRSPEED; /**< Key of the argument </code>airSpeed</code> of event <code>PilotingStateAirSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED_AIRSPEED; /**< Key of the argument </code>airSpeed</code> of event <code>PilotingStateAirSpeedChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DX; /**< Key of the argument </code>dX</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DY; /**< Key of the argument </code>dY</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DZ; /**< Key of the argument </code>dZ</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DPSI; /**< Key of the argument </code>dPsi</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_ERROR; /**< Key of the argument </code>error</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DX; /**< Key of the argument </code>dX</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DY; /**< Key of the argument </code>dY</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DZ; /**< Key of the argument </code>dZ</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_DPSI; /**< Key of the argument </code>dPsi</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGEVENT_MOVEBYEND_ERROR; /**< Key of the argument </code>error</code> of event <code>PilotingEventMoveByEnd</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFISCANLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>ARDrone3</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>ARDrone3</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_ABSOLUTCONTROLCHANGED_ON; /**< Key of the argument </code>on</code> of event <code>PilotingSettingsStateAbsolutControlChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_ABSOLUTCONTROLCHANGED_ON; /**< Key of the argument </code>on</code> of event <code>PilotingSettingsStateAbsolutControlChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXDISTANCECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXDISTANCECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXDISTANCECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXDISTANCECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXDISTANCECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MAXDISTANCECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_NOFLYOVERMAXDISTANCECHANGED_SHOULDNOTFLYOVER; /**< Key of the argument </code>shouldNotFlyOver</code> of event <code>PilotingSettingsStateNoFlyOverMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_NOFLYOVERMAXDISTANCECHANGED_SHOULDNOTFLYOVER; /**< Key of the argument </code>shouldNotFlyOver</code> of event <code>PilotingSettingsStateNoFlyOverMaxDistanceChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXHORIZONTALSPEED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxHorizontalSpeed</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXHORIZONTALSPEED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxHorizontalSpeed</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXVERTICALSPEED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxVerticalSpeed</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXVERTICALSPEED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxVerticalSpeed</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXHORIZONTALACCELERATION_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxHorizontalAcceleration</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXHORIZONTALACCELERATION_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxHorizontalAcceleration</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXVERTICALACCELERATION_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxVerticalAcceleration</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXVERTICALACCELERATION_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxVerticalAcceleration</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXROTATIONSPEED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxRotationSpeed</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_AUTONOMOUSFLIGHTMAXROTATIONSPEED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateAutonomousFlightMaxRotationSpeed</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingSettingsStateBankedTurnChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingSettingsStateBankedTurnChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MINALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMinAltitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MINALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMinAltitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MINALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMinAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MINALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMinAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MINALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMinAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MINALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMinAltitudeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGDIRECTIONCHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateCirclingDirectionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGDIRECTIONCHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStateCirclingDirectionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateCirclingRadiusChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateCirclingRadiusChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateCirclingRadiusChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateCirclingRadiusChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateCirclingRadiusChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateCirclingRadiusChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateCirclingAltitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateCirclingAltitudeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateCirclingAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateCirclingAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateCirclingAltitudeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateCirclingAltitudeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_PITCHMODECHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStatePitchModeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_PITCHMODECHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PilotingSettingsStatePitchModeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_HULLPROTECTIONCHANGED_PRESENT; /**< Key of the argument </code>present</code> of event <code>SpeedSettingsStateHullProtectionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_HULLPROTECTIONCHANGED_PRESENT; /**< Key of the argument </code>present</code> of event <code>SpeedSettingsStateHullProtectionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_OUTDOORCHANGED_OUTDOOR; /**< Key of the argument </code>outdoor</code> of event <code>SpeedSettingsStateOutdoorChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_OUTDOORCHANGED_OUTDOOR; /**< Key of the argument </code>outdoor</code> of event <code>SpeedSettingsStateOutdoorChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxPitchRollRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxPitchRollRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxPitchRollRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxPitchRollRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxPitchRollRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxPitchRollRotationSpeedChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITYCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSecurityChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITYCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSecurityChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSecurity</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEY; /**< Key of the argument </code>key</code> of event <code>NetworkSettingsStateWifiSecurity</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE; /**< Key of the argument </code>keyType</code> of event <code>NetworkSettingsStateWifiSecurity</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSecurity</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEY; /**< Key of the argument </code>key</code> of event <code>NetworkSettingsStateWifiSecurity</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE; /**< Key of the argument </code>keyType</code> of event <code>NetworkSettingsStateWifiSecurity</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_MOTOR_NUMBER; /**< Key of the argument </code>motor_number</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_MOTOR_NUMBER; /**< Key of the argument </code>motor_number</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTMOTORVERSIONLISTCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductMotorVersionListChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORERRORSTATECHANGED_MOTORIDS; /**< Key of the argument </code>motorIds</code> of event <code>SettingsStateMotorErrorStateChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORERRORSTATECHANGED_MOTORERROR; /**< Key of the argument </code>motorError</code> of event <code>SettingsStateMotorErrorStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORERRORSTATECHANGED_MOTORIDS; /**< Key of the argument </code>motorIds</code> of event <code>SettingsStateMotorErrorStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORERRORSTATECHANGED_MOTORERROR; /**< Key of the argument </code>motorError</code> of event <code>SettingsStateMotorErrorStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORSOFTWAREVERSIONCHANGED_VERSION; /**< Key of the argument </code>version</code> of event <code>SettingsStateMotorSoftwareVersionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORSOFTWAREVERSIONCHANGED_VERSION; /**< Key of the argument </code>version</code> of event <code>SettingsStateMotorSoftwareVersionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORFLIGHTSSTATUSCHANGED_NBFLIGHTS; /**< Key of the argument </code>nbFlights</code> of event <code>SettingsStateMotorFlightsStatusChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORFLIGHTSSTATUSCHANGED_LASTFLIGHTDURATION; /**< Key of the argument </code>lastFlightDuration</code> of event <code>SettingsStateMotorFlightsStatusChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORFLIGHTSSTATUSCHANGED_TOTALFLIGHTDURATION; /**< Key of the argument </code>totalFlightDuration</code> of event <code>SettingsStateMotorFlightsStatusChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORFLIGHTSSTATUSCHANGED_NBFLIGHTS; /**< Key of the argument </code>nbFlights</code> of event <code>SettingsStateMotorFlightsStatusChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORFLIGHTSSTATUSCHANGED_LASTFLIGHTDURATION; /**< Key of the argument </code>lastFlightDuration</code> of event <code>SettingsStateMotorFlightsStatusChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORFLIGHTSSTATUSCHANGED_TOTALFLIGHTDURATION; /**< Key of the argument </code>totalFlightDuration</code> of event <code>SettingsStateMotorFlightsStatusChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORERRORLASTERRORCHANGED_MOTORERROR; /**< Key of the argument </code>motorError</code> of event <code>SettingsStateMotorErrorLastErrorChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_MOTORERRORLASTERRORCHANGED_MOTORERROR; /**< Key of the argument </code>motorError</code> of event <code>SettingsStateMotorErrorLastErrorChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_P7ID_SERIALID; /**< Key of the argument </code>serialID</code> of event <code>SettingsStateP7ID</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_P7ID_SERIALID; /**< Key of the argument </code>serialID</code> of event <code>SettingsStateP7ID</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_CPUID_ID; /**< Key of the argument </code>id</code> of event <code>SettingsStateCPUID</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SETTINGSSTATE_CPUID_ID; /**< Key of the argument </code>id</code> of event <code>SettingsStateCPUID</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_PICTUREFORMATCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>PictureSettingsStatePictureFormatChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_PICTUREFORMATCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>PictureSettingsStatePictureFormatChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_AUTOWHITEBALANCECHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>PictureSettingsStateAutoWhiteBalanceChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_AUTOWHITEBALANCECHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>PictureSettingsStateAutoWhiteBalanceChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_EXPOSITIONCHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PictureSettingsStateExpositionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_EXPOSITIONCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PictureSettingsStateExpositionChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_EXPOSITIONCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PictureSettingsStateExpositionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_EXPOSITIONCHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PictureSettingsStateExpositionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_EXPOSITIONCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PictureSettingsStateExpositionChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_EXPOSITIONCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PictureSettingsStateExpositionChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_SATURATIONCHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PictureSettingsStateSaturationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_SATURATIONCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PictureSettingsStateSaturationChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_SATURATIONCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PictureSettingsStateSaturationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_SATURATIONCHANGED_VALUE; /**< Key of the argument </code>value</code> of event <code>PictureSettingsStateSaturationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_SATURATIONCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PictureSettingsStateSaturationChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_SATURATIONCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PictureSettingsStateSaturationChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_INTERVAL; /**< Key of the argument </code>interval</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_MININTERVAL; /**< Key of the argument </code>minInterval</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_MAXINTERVAL; /**< Key of the argument </code>maxInterval</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_INTERVAL; /**< Key of the argument </code>interval</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_MININTERVAL; /**< Key of the argument </code>minInterval</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_TIMELAPSECHANGED_MAXINTERVAL; /**< Key of the argument </code>maxInterval</code> of event <code>PictureSettingsStateTimelapseChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOAUTORECORDCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>PictureSettingsStateVideoAutorecordChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOAUTORECORDCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>PictureSettingsStateVideoAutorecordChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOAUTORECORDCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>PictureSettingsStateVideoAutorecordChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOAUTORECORDCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>PictureSettingsStateVideoAutorecordChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PictureSettingsStateVideoStabilizationModeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PictureSettingsStateVideoStabilizationModeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PictureSettingsStateVideoRecordingModeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PictureSettingsStateVideoRecordingModeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE; /**< Key of the argument </code>framerate</code> of event <code>PictureSettingsStateVideoFramerateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE; /**< Key of the argument </code>framerate</code> of event <code>PictureSettingsStateVideoFramerateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORESOLUTIONSCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>PictureSettingsStateVideoResolutionsChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORESOLUTIONSCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>PictureSettingsStateVideoResolutionsChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>MediaStreamingStateVideoEnableChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>MediaStreamingStateVideoEnableChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIASTREAMINGSTATE_VIDEOSTREAMMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>MediaStreamingStateVideoStreamModeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_MEDIASTREAMINGSTATE_VIDEOSTREAMMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>MediaStreamingStateVideoStreamModeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMECHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>GPSSettingsStateHomeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMECHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>GPSSettingsStateHomeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>GPSSettingsStateHomeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMECHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>GPSSettingsStateHomeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMECHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>GPSSettingsStateHomeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>GPSSettingsStateHomeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>GPSSettingsStateResetHomeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>GPSSettingsStateResetHomeChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>GPSSettingsStateResetHomeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>GPSSettingsStateResetHomeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>GPSSettingsStateResetHomeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>GPSSettingsStateResetHomeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GPSFIXSTATECHANGED_FIXED; /**< Key of the argument </code>fixed</code> of event <code>GPSSettingsStateGPSFixStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GPSFIXSTATECHANGED_FIXED; /**< Key of the argument </code>fixed</code> of event <code>GPSSettingsStateGPSFixStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GPSUPDATESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>GPSSettingsStateGPSUpdateStateChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GPSUPDATESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>GPSSettingsStateGPSUpdateStateChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMETYPECHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>GPSSettingsStateHomeTypeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_HOMETYPECHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>GPSSettingsStateHomeTypeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RETURNHOMEDELAYCHANGED_DELAY; /**< Key of the argument </code>delay</code> of event <code>GPSSettingsStateReturnHomeDelayChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RETURNHOMEDELAYCHANGED_DELAY; /**< Key of the argument </code>delay</code> of event <code>GPSSettingsStateReturnHomeDelayChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATION_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateOrientation</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATION_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateOrientation</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATION_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateOrientation</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATION_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateOrientation</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATION_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateDefaultCameraOrientation</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATION_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateDefaultCameraOrientation</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATION_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateDefaultCameraOrientation</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATION_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateDefaultCameraOrientation</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATIONV2_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateOrientationV2</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATIONV2_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateOrientationV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATIONV2_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateOrientationV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_ORIENTATIONV2_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateOrientationV2</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATIONV2_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateDefaultCameraOrientationV2</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATIONV2_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateDefaultCameraOrientationV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATIONV2_TILT; /**< Key of the argument </code>tilt</code> of event <code>CameraStateDefaultCameraOrientationV2</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_DEFAULTCAMERAORIENTATIONV2_PAN; /**< Key of the argument </code>pan</code> of event <code>CameraStateDefaultCameraOrientationV2</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE_MAX_TILT; /**< Key of the argument </code>max_tilt</code> of event <code>CameraStateVelocityRange</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE_MAX_PAN; /**< Key of the argument </code>max_pan</code> of event <code>CameraStateVelocityRange</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE_MAX_TILT; /**< Key of the argument </code>max_tilt</code> of event <code>CameraStateVelocityRange</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE_MAX_PAN; /**< Key of the argument </code>max_pan</code> of event <code>CameraStateVelocityRange</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY; /**< Key of the argument </code>frequency</code> of event <code>AntiflickeringStateElectricFrequencyChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY; /**< Key of the argument </code>frequency</code> of event <code>AntiflickeringStateElectricFrequencyChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>AntiflickeringStateModeChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>AntiflickeringStateModeChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_NUMBEROFSATELLITECHANGED_NUMBEROFSATELLITE; /**< Key of the argument </code>numberOfSatellite</code> of event <code>GPSStateNumberOfSatelliteChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_NUMBEROFSATELLITECHANGED_NUMBEROFSATELLITE; /**< Key of the argument </code>numberOfSatellite</code> of event <code>GPSStateNumberOfSatelliteChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_HOMETYPEAVAILABILITYCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>GPSStateHomeTypeAvailabilityChanged</code> in feature <code>ARDrone3</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_HOMETYPEAVAILABILITYCHANGED_AVAILABLE; /**< Key of the argument </code>available</code> of event <code>GPSStateHomeTypeAvailabilityChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_HOMETYPEAVAILABILITYCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>GPSStateHomeTypeAvailabilityChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_HOMETYPEAVAILABILITYCHANGED_AVAILABLE; /**< Key of the argument </code>available</code> of event <code>GPSStateHomeTypeAvailabilityChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_HOMETYPECHOSENCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>GPSStateHomeTypeChosenChanged</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSTATE_HOMETYPECHOSENCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>GPSStateHomeTypeChosenChanged</code> in feature <code>ARDrone3</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PROSTATE_FEATURES_FEATURES; /**< Key of the argument </code>features</code> of event <code>PROStateFeatures</code> in feature <code>ARDrone3</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PROSTATE_FEATURES_FEATURES; /**< Key of the argument </code>features</code> of event <code>PROStateFeatures</code> in feature <code>ARDrone3</code> */
 
 /**
  * @brief Send a command <code>PilotingFlatTrim</code> in feature <code>ARDrone3</code>
@@ -1530,152 +1540,152 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Common_AddCallback (ARCONTROLLER_FEATUR
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Common_RemoveCallback (ARCONTROLLER_FEATURE_Common_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE; /**< Key of the argument </code>cause</code> of event <code>NetworkEventDisconnection</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE; /**< Key of the argument </code>cause</code> of event <code>NetworkEventDisconnection</code> in feature <code>Common</code> */
 
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTNAMECHANGED_NAME; /**< Key of the argument </code>name</code> of event <code>SettingsStateProductNameChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTNAMECHANGED_NAME; /**< Key of the argument </code>name</code> of event <code>SettingsStateProductNameChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALHIGHCHANGED_HIGH; /**< Key of the argument </code>high</code> of event <code>SettingsStateProductSerialHighChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALHIGHCHANGED_HIGH; /**< Key of the argument </code>high</code> of event <code>SettingsStateProductSerialHighChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALLOWCHANGED_LOW; /**< Key of the argument </code>low</code> of event <code>SettingsStateProductSerialLowChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALLOWCHANGED_LOW; /**< Key of the argument </code>low</code> of event <code>SettingsStateProductSerialLowChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_COUNTRYCHANGED_CODE; /**< Key of the argument </code>code</code> of event <code>SettingsStateCountryChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_COUNTRYCHANGED_CODE; /**< Key of the argument </code>code</code> of event <code>SettingsStateCountryChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_AUTOCOUNTRYCHANGED_AUTOMATIC; /**< Key of the argument </code>automatic</code> of event <code>SettingsStateAutoCountryChanged</code> in feature <code>Common</code> */
-
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED_PERCENT; /**< Key of the argument </code>percent</code> of event <code>CommonStateBatteryStateChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME; /**< Key of the argument </code>name</code> of event <code>CommonStateMassStorageStateListChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE; /**< Key of the argument </code>size</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE; /**< Key of the argument </code>used_size</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED; /**< Key of the argument </code>plugged</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL; /**< Key of the argument </code>full</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL; /**< Key of the argument </code>internal</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTDATECHANGED_DATE; /**< Key of the argument </code>date</code> of event <code>CommonStateCurrentDateChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTTIMECHANGED_TIME; /**< Key of the argument </code>time</code> of event <code>CommonStateCurrentTimeChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE; /**< Key of the argument </code>free_space</code> of event <code>CommonStateMassStorageInfoRemainingListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME; /**< Key of the argument </code>rec_time</code> of event <code>CommonStateMassStorageInfoRemainingListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING; /**< Key of the argument </code>photo_remaining</code> of event <code>CommonStateMassStorageInfoRemainingListChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_WIFISIGNALCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>CommonStateWifiSignalChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME; /**< Key of the argument </code>sensorName</code> of event <code>CommonStateSensorsStatesListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE; /**< Key of the argument </code>sensorState</code> of event <code>CommonStateSensorsStatesListChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL; /**< Key of the argument </code>model</code> of event <code>CommonStateProductModel</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS; /**< Key of the argument </code>listFlags</code> of event <code>CommonStateCountryListKnown</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES; /**< Key of the argument </code>countryCodes</code> of event <code>CommonStateCountryListKnown</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS; /**< Key of the argument </code>nbPhotos</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS; /**< Key of the argument </code>nbVideos</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS; /**< Key of the argument </code>nbPuds</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS; /**< Key of the argument </code>nbCrashLogs</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS; /**< Key of the argument </code>nbPhotos</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS; /**< Key of the argument </code>nbVideos</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS; /**< Key of the argument </code>nbPuds</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS; /**< Key of the argument </code>nbCrashLogs</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS; /**< Key of the argument </code>nbRawPhotos</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS; /**< Key of the argument </code>nbPhotos</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS; /**< Key of the argument </code>nbVideos</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS; /**< Key of the argument </code>nbRawPhotos</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_VIDEORECORDINGTIMESTAMP_STARTTIMESTAMP; /**< Key of the argument </code>startTimestamp</code> of event <code>CommonStateVideoRecordingTimestamp</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_VIDEORECORDINGTIMESTAMP_STOPTIMESTAMP; /**< Key of the argument </code>stopTimestamp</code> of event <code>CommonStateVideoRecordingTimestamp</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_AUTOCOUNTRYCHANGED_AUTOMATIC; /**< Key of the argument </code>automatic</code> of event <code>SettingsStateAutoCountryChanged</code> in feature <code>Common</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATE_OVERHEATREGULATIONCHANGED_REGULATIONTYPE; /**< Key of the argument </code>regulationType</code> of event <code>OverHeatStateOverHeatRegulationChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED_PERCENT; /**< Key of the argument </code>percent</code> of event <code>CommonStateBatteryStateChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_WIFISETTINGSSTATE_OUTDOORSETTINGSCHANGED_OUTDOOR; /**< Key of the argument </code>outdoor</code> of event <code>WifiSettingsStateOutdoorSettingsChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME; /**< Key of the argument </code>name</code> of event <code>CommonStateMassStorageStateListChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MavlinkStateMavlinkFilePlayingStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_FILEPATH; /**< Key of the argument </code>filepath</code> of event <code>MavlinkStateMavlinkFilePlayingStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>MavlinkStateMavlinkFilePlayingStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE; /**< Key of the argument </code>size</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE; /**< Key of the argument </code>used_size</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED; /**< Key of the argument </code>plugged</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL; /**< Key of the argument </code>full</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL; /**< Key of the argument </code>internal</code> of event <code>CommonStateMassStorageInfoStateListChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MavlinkStateMavlinkPlayErrorStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTDATECHANGED_DATE; /**< Key of the argument </code>date</code> of event <code>CommonStateCurrentDateChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSONITEMEXECUTED_IDX; /**< Key of the argument </code>idx</code> of event <code>MavlinkStateMissonItemExecuted</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTTIMECHANGED_TIME; /**< Key of the argument </code>time</code> of event <code>CommonStateCurrentTimeChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_XAXISCALIBRATION; /**< Key of the argument </code>xAxisCalibration</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_YAXISCALIBRATION; /**< Key of the argument </code>yAxisCalibration</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_ZAXISCALIBRATION; /**< Key of the argument </code>zAxisCalibration</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_CALIBRATIONFAILED; /**< Key of the argument </code>calibrationFailed</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE; /**< Key of the argument </code>free_space</code> of event <code>CommonStateMassStorageInfoRemainingListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME; /**< Key of the argument </code>rec_time</code> of event <code>CommonStateMassStorageInfoRemainingListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING; /**< Key of the argument </code>photo_remaining</code> of event <code>CommonStateMassStorageInfoRemainingListChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONREQUIREDSTATE_REQUIRED; /**< Key of the argument </code>required</code> of event <code>CalibrationStateMagnetoCalibrationRequiredState</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_WIFISIGNALCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>CommonStateWifiSignalChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS; /**< Key of the argument </code>axis</code> of event <code>CalibrationStateMagnetoCalibrationAxisToCalibrateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME; /**< Key of the argument </code>sensorName</code> of event <code>CommonStateSensorsStatesListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE; /**< Key of the argument </code>sensorState</code> of event <code>CommonStateSensorsStatesListChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTARTEDCHANGED_STARTED; /**< Key of the argument </code>started</code> of event <code>CalibrationStateMagnetoCalibrationStartedChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL; /**< Key of the argument </code>model</code> of event <code>CommonStateProductModel</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>CalibrationStatePitotCalibrationStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_LASTERROR; /**< Key of the argument </code>lastError</code> of event <code>CalibrationStatePitotCalibrationStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS; /**< Key of the argument </code>listFlags</code> of event <code>CommonStateCountryListKnown</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES; /**< Key of the argument </code>countryCodes</code> of event <code>CommonStateCountryListKnown</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_FOV; /**< Key of the argument </code>fov</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_PANMAX; /**< Key of the argument </code>panMax</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_PANMIN; /**< Key of the argument </code>panMin</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_TILTMAX; /**< Key of the argument </code>tiltMax</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_TILTMIN; /**< Key of the argument </code>tiltMin</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS; /**< Key of the argument </code>nbPhotos</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS; /**< Key of the argument </code>nbVideos</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS; /**< Key of the argument </code>nbPuds</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS; /**< Key of the argument </code>nbCrashLogs</code> of event <code>CommonStateDeprecatedMassStorageContentChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_AVAILABILITYSTATECHANGED_AVAILABILITYSTATE; /**< Key of the argument </code>AvailabilityState</code> of event <code>FlightPlanStateAvailabilityStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS; /**< Key of the argument </code>nbPhotos</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS; /**< Key of the argument </code>nbVideos</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS; /**< Key of the argument </code>nbPuds</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS; /**< Key of the argument </code>nbCrashLogs</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS; /**< Key of the argument </code>nbRawPhotos</code> of event <code>CommonStateMassStorageContent</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT; /**< Key of the argument </code>component</code> of event <code>FlightPlanStateComponentStateListChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE; /**< Key of the argument </code>State</code> of event <code>FlightPlanStateComponentStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS; /**< Key of the argument </code>nbPhotos</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS; /**< Key of the argument </code>nbVideos</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS; /**< Key of the argument </code>nbRawPhotos</code> of event <code>CommonStateMassStorageContentForCurrentRun</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_LOCKSTATECHANGED_LOCKSTATE; /**< Key of the argument </code>LockState</code> of event <code>FlightPlanStateLockStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_VIDEORECORDINGTIMESTAMP_STARTTIMESTAMP; /**< Key of the argument </code>startTimestamp</code> of event <code>CommonStateVideoRecordingTimestamp</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_VIDEORECORDINGTIMESTAMP_STOPTIMESTAMP; /**< Key of the argument </code>stopTimestamp</code> of event <code>CommonStateVideoRecordingTimestamp</code> in feature <code>Common</code> */
+
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATE_OVERHEATREGULATIONCHANGED_REGULATIONTYPE; /**< Key of the argument </code>regulationType</code> of event <code>OverHeatStateOverHeatRegulationChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_WIFISETTINGSSTATE_OUTDOORSETTINGSCHANGED_OUTDOOR; /**< Key of the argument </code>outdoor</code> of event <code>WifiSettingsStateOutdoorSettingsChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MavlinkStateMavlinkFilePlayingStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_FILEPATH; /**< Key of the argument </code>filepath</code> of event <code>MavlinkStateMavlinkFilePlayingStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>MavlinkStateMavlinkFilePlayingStateChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MavlinkStateMavlinkPlayErrorStateChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSONITEMEXECUTED_IDX; /**< Key of the argument </code>idx</code> of event <code>MavlinkStateMissonItemExecuted</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_XAXISCALIBRATION; /**< Key of the argument </code>xAxisCalibration</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_YAXISCALIBRATION; /**< Key of the argument </code>yAxisCalibration</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_ZAXISCALIBRATION; /**< Key of the argument </code>zAxisCalibration</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_CALIBRATIONFAILED; /**< Key of the argument </code>calibrationFailed</code> of event <code>CalibrationStateMagnetoCalibrationStateChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONREQUIREDSTATE_REQUIRED; /**< Key of the argument </code>required</code> of event <code>CalibrationStateMagnetoCalibrationRequiredState</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS; /**< Key of the argument </code>axis</code> of event <code>CalibrationStateMagnetoCalibrationAxisToCalibrateChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTARTEDCHANGED_STARTED; /**< Key of the argument </code>started</code> of event <code>CalibrationStateMagnetoCalibrationStartedChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>CalibrationStatePitotCalibrationStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_LASTERROR; /**< Key of the argument </code>lastError</code> of event <code>CalibrationStatePitotCalibrationStateChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_FOV; /**< Key of the argument </code>fov</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_PANMAX; /**< Key of the argument </code>panMax</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_PANMIN; /**< Key of the argument </code>panMin</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_TILTMAX; /**< Key of the argument </code>tiltMax</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_TILTMIN; /**< Key of the argument </code>tiltMin</code> of event <code>CameraSettingsStateCameraSettingsChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_AVAILABILITYSTATECHANGED_AVAILABILITYSTATE; /**< Key of the argument </code>AvailabilityState</code> of event <code>FlightPlanStateAvailabilityStateChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT; /**< Key of the argument </code>component</code> of event <code>FlightPlanStateComponentStateListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE; /**< Key of the argument </code>State</code> of event <code>FlightPlanStateComponentStateListChanged</code> in feature <code>Common</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_LOCKSTATECHANGED_LOCKSTATE; /**< Key of the argument </code>LockState</code> of event <code>FlightPlanStateLockStateChanged</code> in feature <code>Common</code> */
 
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_CONTROLLERLIBARCOMMANDSVERSION_VERSION; /**< Key of the argument </code>version</code> of event <code>ARLibsVersionsStateControllerLibARCommandsVersion</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_CONTROLLERLIBARCOMMANDSVERSION_VERSION; /**< Key of the argument </code>version</code> of event <code>ARLibsVersionsStateControllerLibARCommandsVersion</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_SKYCONTROLLERLIBARCOMMANDSVERSION_VERSION; /**< Key of the argument </code>version</code> of event <code>ARLibsVersionsStateSkyControllerLibARCommandsVersion</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_SKYCONTROLLERLIBARCOMMANDSVERSION_VERSION; /**< Key of the argument </code>version</code> of event <code>ARLibsVersionsStateSkyControllerLibARCommandsVersion</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_DEVICELIBARCOMMANDSVERSION_VERSION; /**< Key of the argument </code>version</code> of event <code>ARLibsVersionsStateDeviceLibARCommandsVersion</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_DEVICELIBARCOMMANDSVERSION_VERSION; /**< Key of the argument </code>version</code> of event <code>ARLibsVersionsStateDeviceLibARCommandsVersion</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_AUDIOSTATE_AUDIOSTREAMINGRUNNING_RUNNING; /**< Key of the argument </code>running</code> of event <code>AudioStateAudioStreamingRunning</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_AUDIOSTATE_AUDIOSTREAMINGRUNNING_RUNNING; /**< Key of the argument </code>running</code> of event <code>AudioStateAudioStreamingRunning</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED_LEFT; /**< Key of the argument </code>left</code> of event <code>HeadlightsStateIntensityChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED_RIGHT; /**< Key of the argument </code>right</code> of event <code>HeadlightsStateIntensityChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED_LEFT; /**< Key of the argument </code>left</code> of event <code>HeadlightsStateIntensityChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED_RIGHT; /**< Key of the argument </code>right</code> of event <code>HeadlightsStateIntensityChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM; /**< Key of the argument </code>anim</code> of event <code>AnimationsStateList</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE; /**< Key of the argument </code>state</code> of event <code>AnimationsStateList</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR; /**< Key of the argument </code>error</code> of event <code>AnimationsStateList</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM; /**< Key of the argument </code>anim</code> of event <code>AnimationsStateList</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE; /**< Key of the argument </code>state</code> of event <code>AnimationsStateList</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR; /**< Key of the argument </code>error</code> of event <code>AnimationsStateList</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY; /**< Key of the argument </code>accessory</code> of event <code>AccessoryStateSupportedAccessoriesListChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY; /**< Key of the argument </code>accessory</code> of event <code>AccessoryStateSupportedAccessoriesListChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY; /**< Key of the argument </code>newAccessory</code> of event <code>AccessoryStateAccessoryConfigChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>AccessoryStateAccessoryConfigChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY; /**< Key of the argument </code>newAccessory</code> of event <code>AccessoryStateAccessoryConfigChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>AccessoryStateAccessoryConfigChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGMODIFICATIONENABLED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>AccessoryStateAccessoryConfigModificationEnabled</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGMODIFICATIONENABLED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>AccessoryStateAccessoryConfigModificationEnabled</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE; /**< Key of the argument </code>rate</code> of event <code>ChargerStateMaxChargeRateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE; /**< Key of the argument </code>rate</code> of event <code>ChargerStateMaxChargeRateChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS; /**< Key of the argument </code>status</code> of event <code>ChargerStateCurrentChargeStateChanged</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE; /**< Key of the argument </code>phase</code> of event <code>ChargerStateCurrentChargeStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS; /**< Key of the argument </code>status</code> of event <code>ChargerStateCurrentChargeStateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE; /**< Key of the argument </code>phase</code> of event <code>ChargerStateCurrentChargeStateChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE; /**< Key of the argument </code>rate</code> of event <code>ChargerStateLastChargeRateChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE; /**< Key of the argument </code>rate</code> of event <code>ChargerStateLastChargeRateChanged</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE; /**< Key of the argument </code>phase</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_RATE; /**< Key of the argument </code>rate</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_INTENSITY; /**< Key of the argument </code>intensity</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_FULLCHARGINGTIME; /**< Key of the argument </code>fullChargingTime</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE; /**< Key of the argument </code>phase</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_RATE; /**< Key of the argument </code>rate</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_INTENSITY; /**< Key of the argument </code>intensity</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_FULLCHARGINGTIME; /**< Key of the argument </code>fullChargingTime</code> of event <code>ChargerStateChargingInfo</code> in feature <code>Common</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_RUNSTATE_RUNIDCHANGED_RUNID; /**< Key of the argument </code>runId</code> of event <code>RunStateRunIdChanged</code> in feature <code>Common</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_COMMON_RUNSTATE_RUNIDCHANGED_RUNID; /**< Key of the argument </code>runId</code> of event <code>RunStateRunIdChanged</code> in feature <code>Common</code> */
 
 /**
  * @brief Send a command <code>NetworkDisconnect</code> in feature <code>Common</code>
@@ -2228,18 +2238,18 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Debug_AddCallback (ARCONTROLLER_FEATURE
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Debug_RemoveCallback (ARCONTROLLER_FEATURE_Debug_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LISTFLAGS; /**< Key of the argument </code>listFlags</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_ID; /**< Key of the argument </code>id</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LABEL; /**< Key of the argument </code>label</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_TYPE; /**< Key of the argument </code>type</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_MODE; /**< Key of the argument </code>mode</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_RANGE_MIN; /**< Key of the argument </code>range_min</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_RANGE_MAX; /**< Key of the argument </code>range_max</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_RANGE_STEP; /**< Key of the argument </code>range_step</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_VALUE; /**< Key of the argument </code>value</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LISTFLAGS; /**< Key of the argument </code>listFlags</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_ID; /**< Key of the argument </code>id</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LABEL; /**< Key of the argument </code>label</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_TYPE; /**< Key of the argument </code>type</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_MODE; /**< Key of the argument </code>mode</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_RANGE_MIN; /**< Key of the argument </code>range_min</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_RANGE_MAX; /**< Key of the argument </code>range_max</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_RANGE_STEP; /**< Key of the argument </code>range_step</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_VALUE; /**< Key of the argument </code>value</code> of event <code>SettingsInfo</code> in feature <code>Debug</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSLIST_ID; /**< Key of the argument </code>id</code> of event <code>SettingsList</code> in feature <code>Debug</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSLIST_VALUE; /**< Key of the argument </code>value</code> of event <code>SettingsList</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSLIST_ID; /**< Key of the argument </code>id</code> of event <code>SettingsList</code> in feature <code>Debug</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSLIST_VALUE; /**< Key of the argument </code>value</code> of event <code>SettingsList</code> in feature <code>Debug</code> */
 
 /**
  * @brief Send a command <code>GetAllSettings</code> in feature <code>Debug</code>
@@ -2365,34 +2375,34 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_DroneManager_AddCallback (ARCONTROLLER_
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_DroneManager_RemoveCallback (ARCONTROLLER_FEATURE_DroneManager_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_SERIAL; /**< Key of the argument </code>serial</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_MODEL; /**< Key of the argument </code>model</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_NAME; /**< Key of the argument </code>name</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_CONNECTION_ORDER; /**< Key of the argument </code>connection_order</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_ACTIVE; /**< Key of the argument </code>active</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_VISIBLE; /**< Key of the argument </code>visible</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_SECURITY; /**< Key of the argument </code>security</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_HAS_SAVED_KEY; /**< Key of the argument </code>has_saved_key</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_RSSI; /**< Key of the argument </code>rssi</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_SERIAL; /**< Key of the argument </code>serial</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_MODEL; /**< Key of the argument </code>model</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_NAME; /**< Key of the argument </code>name</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_CONNECTION_ORDER; /**< Key of the argument </code>connection_order</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_ACTIVE; /**< Key of the argument </code>active</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_VISIBLE; /**< Key of the argument </code>visible</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_SECURITY; /**< Key of the argument </code>security</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_HAS_SAVED_KEY; /**< Key of the argument </code>has_saved_key</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_DRONELISTITEM_RSSI; /**< Key of the argument </code>rssi</code> of event <code>DroneListItem</code> in feature <code>DroneManager</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_SERIAL; /**< Key of the argument </code>serial</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_MODEL; /**< Key of the argument </code>model</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_NAME; /**< Key of the argument </code>name</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_SERIAL; /**< Key of the argument </code>serial</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_MODEL; /**< Key of the argument </code>model</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONSTATE_NAME; /**< Key of the argument </code>name</code> of event <code>ConnectionState</code> in feature <code>DroneManager</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_AUTHENTICATIONFAILED_SERIAL; /**< Key of the argument </code>serial</code> of event <code>AuthenticationFailed</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_AUTHENTICATIONFAILED_MODEL; /**< Key of the argument </code>model</code> of event <code>AuthenticationFailed</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_AUTHENTICATIONFAILED_NAME; /**< Key of the argument </code>name</code> of event <code>AuthenticationFailed</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_AUTHENTICATIONFAILED_SERIAL; /**< Key of the argument </code>serial</code> of event <code>AuthenticationFailed</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_AUTHENTICATIONFAILED_MODEL; /**< Key of the argument </code>model</code> of event <code>AuthenticationFailed</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_AUTHENTICATIONFAILED_NAME; /**< Key of the argument </code>name</code> of event <code>AuthenticationFailed</code> in feature <code>DroneManager</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONREFUSED_SERIAL; /**< Key of the argument </code>serial</code> of event <code>ConnectionRefused</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONREFUSED_MODEL; /**< Key of the argument </code>model</code> of event <code>ConnectionRefused</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONREFUSED_NAME; /**< Key of the argument </code>name</code> of event <code>ConnectionRefused</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONREFUSED_SERIAL; /**< Key of the argument </code>serial</code> of event <code>ConnectionRefused</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONREFUSED_MODEL; /**< Key of the argument </code>model</code> of event <code>ConnectionRefused</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_CONNECTIONREFUSED_NAME; /**< Key of the argument </code>name</code> of event <code>ConnectionRefused</code> in feature <code>DroneManager</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_SERIAL; /**< Key of the argument </code>serial</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_MODEL; /**< Key of the argument </code>model</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_NAME; /**< Key of the argument </code>name</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_SECURITY; /**< Key of the argument </code>security</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_HAS_SAVED_KEY; /**< Key of the argument </code>has_saved_key</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_SERIAL; /**< Key of the argument </code>serial</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_MODEL; /**< Key of the argument </code>model</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_NAME; /**< Key of the argument </code>name</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_SECURITY; /**< Key of the argument </code>security</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_DRONE_MANAGER_KNOWNDRONEITEM_HAS_SAVED_KEY; /**< Key of the argument </code>has_saved_key</code> of event <code>KnownDroneItem</code> in feature <code>DroneManager</code> */
 
 /**
  * @brief Send a command <code>DiscoverDrones</code> in feature <code>DroneManager</code>
@@ -2528,58 +2538,58 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_FollowMe_AddCallback (ARCONTROLLER_FEAT
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_FollowMe_RemoveCallback (ARCONTROLLER_FEATURE_FollowMe_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_MODE; /**< Key of the argument </code>mode</code> of event <code>State</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_BEHAVIOR; /**< Key of the argument </code>behavior</code> of event <code>State</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_ANIMATION; /**< Key of the argument </code>animation</code> of event <code>State</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_ANIMATION_AVAILABLE; /**< Key of the argument </code>animation_available</code> of event <code>State</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_MODE; /**< Key of the argument </code>mode</code> of event <code>State</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_BEHAVIOR; /**< Key of the argument </code>behavior</code> of event <code>State</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_ANIMATION; /**< Key of the argument </code>animation</code> of event <code>State</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_STATE_ANIMATION_AVAILABLE; /**< Key of the argument </code>animation_available</code> of event <code>State</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_MODEINFO_MODE; /**< Key of the argument </code>mode</code> of event <code>ModeInfo</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_MODEINFO_MISSING_REQUIREMENTS; /**< Key of the argument </code>missing_requirements</code> of event <code>ModeInfo</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_MODEINFO_IMPROVEMENTS; /**< Key of the argument </code>improvements</code> of event <code>ModeInfo</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_MODEINFO_MODE; /**< Key of the argument </code>mode</code> of event <code>ModeInfo</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_MODEINFO_MISSING_REQUIREMENTS; /**< Key of the argument </code>missing_requirements</code> of event <code>ModeInfo</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_MODEINFO_IMPROVEMENTS; /**< Key of the argument </code>improvements</code> of event <code>ModeInfo</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_DISTANCE; /**< Key of the argument </code>distance</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_ELEVATION; /**< Key of the argument </code>elevation</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_AZIMUTH; /**< Key of the argument </code>azimuth</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_DISTANCE; /**< Key of the argument </code>distance</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_ELEVATION; /**< Key of the argument </code>elevation</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_GEOGRAPHICCONFIG_AZIMUTH; /**< Key of the argument </code>azimuth</code> of event <code>GeographicConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_DISTANCE; /**< Key of the argument </code>distance</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_ELEVATION; /**< Key of the argument </code>elevation</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_AZIMUTH; /**< Key of the argument </code>azimuth</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_DISTANCE; /**< Key of the argument </code>distance</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_ELEVATION; /**< Key of the argument </code>elevation</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_RELATIVECONFIG_AZIMUTH; /**< Key of the argument </code>azimuth</code> of event <code>RelativeConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_NORTH_SPEED; /**< Key of the argument </code>north_speed</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_EAST_SPEED; /**< Key of the argument </code>east_speed</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_DOWN_SPEED; /**< Key of the argument </code>down_speed</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_NORTH_SPEED; /**< Key of the argument </code>north_speed</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_EAST_SPEED; /**< Key of the argument </code>east_speed</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETTRAJECTORY_DOWN_SPEED; /**< Key of the argument </code>down_speed</code> of event <code>TargetTrajectory</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_REVOLUTION_NB; /**< Key of the argument </code>revolution_nb</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_VERTICAL_DISTANCE; /**< Key of the argument </code>vertical_distance</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_REVOLUTION_NB; /**< Key of the argument </code>revolution_nb</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_HELICOIDANIMCONFIG_VERTICAL_DISTANCE; /**< Key of the argument </code>vertical_distance</code> of event <code>HelicoidAnimConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_SWINGANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>SwingAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_SWINGANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>SwingAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_SWINGANIMCONFIG_VERTICAL_DISTANCE; /**< Key of the argument </code>vertical_distance</code> of event <code>SwingAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_SWINGANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>SwingAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_SWINGANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>SwingAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_SWINGANIMCONFIG_VERTICAL_DISTANCE; /**< Key of the argument </code>vertical_distance</code> of event <code>SwingAnimConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_BOOMERANGANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>BoomerangAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_BOOMERANGANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>BoomerangAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_BOOMERANGANIMCONFIG_DISTANCE; /**< Key of the argument </code>distance</code> of event <code>BoomerangAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_BOOMERANGANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>BoomerangAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_BOOMERANGANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>BoomerangAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_BOOMERANGANIMCONFIG_DISTANCE; /**< Key of the argument </code>distance</code> of event <code>BoomerangAnimConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_CANDLEANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>CandleAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_CANDLEANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>CandleAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_CANDLEANIMCONFIG_VERTICAL_DISTANCE; /**< Key of the argument </code>vertical_distance</code> of event <code>CandleAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_CANDLEANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>CandleAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_CANDLEANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>CandleAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_CANDLEANIMCONFIG_VERTICAL_DISTANCE; /**< Key of the argument </code>vertical_distance</code> of event <code>CandleAnimConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_ANGLE; /**< Key of the argument </code>angle</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_HORIZONTAL_DISTANCE; /**< Key of the argument </code>horizontal_distance</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_USE_DEFAULT; /**< Key of the argument </code>use_default</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_SPEED; /**< Key of the argument </code>speed</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_ANGLE; /**< Key of the argument </code>angle</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_DOLLYSLIDEANIMCONFIG_HORIZONTAL_DISTANCE; /**< Key of the argument </code>horizontal_distance</code> of event <code>DollySlideAnimConfig</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETFRAMINGPOSITIONCHANGED_HORIZONTAL; /**< Key of the argument </code>horizontal</code> of event <code>TargetFramingPositionChanged</code> in feature <code>FollowMe</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETFRAMINGPOSITIONCHANGED_VERTICAL; /**< Key of the argument </code>vertical</code> of event <code>TargetFramingPositionChanged</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETFRAMINGPOSITIONCHANGED_HORIZONTAL; /**< Key of the argument </code>horizontal</code> of event <code>TargetFramingPositionChanged</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETFRAMINGPOSITIONCHANGED_VERTICAL; /**< Key of the argument </code>vertical</code> of event <code>TargetFramingPositionChanged</code> in feature <code>FollowMe</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETIMAGEDETECTIONSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>TargetImageDetectionState</code> in feature <code>FollowMe</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_FOLLOW_ME_TARGETIMAGEDETECTIONSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>TargetImageDetectionState</code> in feature <code>FollowMe</code> */
 
 /**
  * @brief Send a command <code>Start</code> in feature <code>FollowMe</code>
@@ -2835,79 +2845,79 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_JumpingSumo_AddCallback (ARCONTROLLER_F
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_JumpingSumo_RemoveCallback (ARCONTROLLER_FEATURE_JumpingSumo_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_POSTURECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStatePostureChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_POSTURECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStatePostureChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_SPEEDCHANGED_SPEED; /**< Key of the argument </code>speed</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_SPEEDCHANGED_REALSPEED; /**< Key of the argument </code>realSpeed</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_SPEEDCHANGED_SPEED; /**< Key of the argument </code>speed</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_PILOTINGSTATE_SPEEDCHANGED_REALSPEED; /**< Key of the argument </code>realSpeed</code> of event <code>PilotingStateSpeedChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ANIMATIONSSTATE_JUMPLOADCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>AnimationsStateJumpLoadChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ANIMATIONSSTATE_JUMPLOADCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>AnimationsStateJumpLoadChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ANIMATIONSSTATE_JUMPTYPECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>AnimationsStateJumpTypeChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ANIMATIONSSTATE_JUMPTYPECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>AnimationsStateJumpTypeChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ANIMATIONSSTATE_JUMPMOTORPROBLEMCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>AnimationsStateJumpMotorProblemChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ANIMATIONSSTATE_JUMPMOTORPROBLEMCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>AnimationsStateJumpMotorProblemChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_SETTINGSSTATE_PRODUCTGPSVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductGPSVersionChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStateVideoStateChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_VIDEOEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_VIDEOEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_VIDEOEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIARECORDEVENT_VIDEOEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
-
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFISCANLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>JumpingSumo</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_LINKQUALITYCHANGED_QUALITY; /**< Key of the argument </code>quality</code> of event <code>NetworkStateLinkQualityChanged</code> in feature <code>JumpingSumo</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_AUDIOSETTINGSSTATE_MASTERVOLUMECHANGED_VOLUME; /**< Key of the argument </code>volume</code> of event <code>AudioSettingsStateMasterVolumeChanged</code> in feature <code>JumpingSumo</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_AUDIOSETTINGSSTATE_THEMECHANGED_THEME; /**< Key of the argument </code>theme</code> of event <code>AudioSettingsStateThemeChanged</code> in feature <code>JumpingSumo</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_UUID; /**< Key of the argument </code>uuid</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_VERSION; /**< Key of the argument </code>version</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_PRODUCT; /**< Key of the argument </code>product</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_NAME; /**< Key of the argument </code>name</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_LASTMODIFIED; /**< Key of the argument </code>lastModified</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>JumpingSumo</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTUPLOADCHANGED_RESULTCODE; /**< Key of the argument </code>resultCode</code> of event <code>RoadPlanStateScriptUploadChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_NETWORKSTATE_LINKQUALITYCHANGED_QUALITY; /**< Key of the argument </code>quality</code> of event <code>NetworkStateLinkQualityChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTDELETECHANGED_RESULTCODE; /**< Key of the argument </code>resultCode</code> of event <code>RoadPlanStateScriptDeleteChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_AUDIOSETTINGSSTATE_MASTERVOLUMECHANGED_VOLUME; /**< Key of the argument </code>volume</code> of event <code>AudioSettingsStateMasterVolumeChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_PLAYSCRIPTCHANGED_RESULTCODE; /**< Key of the argument </code>resultCode</code> of event <code>RoadPlanStatePlayScriptChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_AUDIOSETTINGSSTATE_THEMECHANGED_THEME; /**< Key of the argument </code>theme</code> of event <code>AudioSettingsStateThemeChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_SPEEDSETTINGSSTATE_OUTDOORCHANGED_OUTDOOR; /**< Key of the argument </code>outdoor</code> of event <code>SpeedSettingsStateOutdoorChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_UUID; /**< Key of the argument </code>uuid</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_VERSION; /**< Key of the argument </code>version</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_PRODUCT; /**< Key of the argument </code>product</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_NAME; /**< Key of the argument </code>name</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTMETADATALISTCHANGED_LASTMODIFIED; /**< Key of the argument </code>lastModified</code> of event <code>RoadPlanStateScriptMetadataListChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>MediaStreamingStateVideoEnableChanged</code> in feature <code>JumpingSumo</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>VideoSettingsStateAutorecordChanged</code> in feature <code>JumpingSumo</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTUPLOADCHANGED_RESULTCODE; /**< Key of the argument </code>resultCode</code> of event <code>RoadPlanStateScriptUploadChanged</code> in feature <code>JumpingSumo</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_SCRIPTDELETECHANGED_RESULTCODE; /**< Key of the argument </code>resultCode</code> of event <code>RoadPlanStateScriptDeleteChanged</code> in feature <code>JumpingSumo</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_ROADPLANSTATE_PLAYSCRIPTCHANGED_RESULTCODE; /**< Key of the argument </code>resultCode</code> of event <code>RoadPlanStatePlayScriptChanged</code> in feature <code>JumpingSumo</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_SPEEDSETTINGSSTATE_OUTDOORCHANGED_OUTDOOR; /**< Key of the argument </code>outdoor</code> of event <code>SpeedSettingsStateOutdoorChanged</code> in feature <code>JumpingSumo</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>MediaStreamingStateVideoEnableChanged</code> in feature <code>JumpingSumo</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_JUMPINGSUMO_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>VideoSettingsStateAutorecordChanged</code> in feature <code>JumpingSumo</code> */
 
 /**
  * @brief Send a command <code>PilotingPCMD</code> in feature <code>JumpingSumo</code>
@@ -3307,43 +3317,43 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Mapper_AddCallback (ARCONTROLLER_FEATUR
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Mapper_RemoveCallback (ARCONTROLLER_FEATURE_Mapper_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABSTATE_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>GrabState</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABSTATE_AXES; /**< Key of the argument </code>axes</code> of event <code>GrabState</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABSTATE_BUTTONS_STATE; /**< Key of the argument </code>buttons_state</code> of event <code>GrabState</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABSTATE_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>GrabState</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABSTATE_AXES; /**< Key of the argument </code>axes</code> of event <code>GrabState</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABSTATE_BUTTONS_STATE; /**< Key of the argument </code>buttons_state</code> of event <code>GrabState</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABBUTTONEVENT_BUTTON; /**< Key of the argument </code>button</code> of event <code>GrabButtonEvent</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABBUTTONEVENT_EVENT; /**< Key of the argument </code>event</code> of event <code>GrabButtonEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABBUTTONEVENT_BUTTON; /**< Key of the argument </code>button</code> of event <code>GrabButtonEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABBUTTONEVENT_EVENT; /**< Key of the argument </code>event</code> of event <code>GrabButtonEvent</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABAXISEVENT_AXIS; /**< Key of the argument </code>axis</code> of event <code>GrabAxisEvent</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABAXISEVENT_VALUE; /**< Key of the argument </code>value</code> of event <code>GrabAxisEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABAXISEVENT_AXIS; /**< Key of the argument </code>axis</code> of event <code>GrabAxisEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_GRABAXISEVENT_VALUE; /**< Key of the argument </code>value</code> of event <code>GrabAxisEvent</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_BUTTONMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>ButtonMappingItem</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_AXISMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>AxisMappingItem</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_APPLICATIONAXISEVENT_ACTION; /**< Key of the argument </code>action</code> of event <code>ApplicationAxisEvent</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_APPLICATIONAXISEVENT_VALUE; /**< Key of the argument </code>value</code> of event <code>ApplicationAxisEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_APPLICATIONAXISEVENT_ACTION; /**< Key of the argument </code>action</code> of event <code>ApplicationAxisEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_APPLICATIONAXISEVENT_VALUE; /**< Key of the argument </code>value</code> of event <code>ApplicationAxisEvent</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_APPLICATIONBUTTONEVENT_ACTION; /**< Key of the argument </code>action</code> of event <code>ApplicationButtonEvent</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_APPLICATIONBUTTONEVENT_ACTION; /**< Key of the argument </code>action</code> of event <code>ApplicationButtonEvent</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_UID; /**< Key of the argument </code>uid</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_EXPO; /**< Key of the argument </code>expo</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_UID; /**< Key of the argument </code>uid</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_EXPOMAPITEM_EXPO; /**< Key of the argument </code>expo</code> of event <code>ExpoMapItem</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_UID; /**< Key of the argument </code>uid</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_INVERTED; /**< Key of the argument </code>inverted</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_UID; /**< Key of the argument </code>uid</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_PRODUCT; /**< Key of the argument </code>product</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_INVERTEDMAPITEM_INVERTED; /**< Key of the argument </code>inverted</code> of event <code>InvertedMapItem</code> in feature <code>Mapper</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_ACTIVEPRODUCT_PRODUCT; /**< Key of the argument </code>product</code> of event <code>ActiveProduct</code> in feature <code>Mapper</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_ACTIVEPRODUCT_PRODUCT; /**< Key of the argument </code>product</code> of event <code>ActiveProduct</code> in feature <code>Mapper</code> */
 
 /**
  * @brief Send a command <code>Grab</code> in feature <code>Mapper</code>
@@ -3522,16 +3532,16 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_MapperMini_AddCallback (ARCONTROLLER_FE
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_MapperMini_RemoveCallback (ARCONTROLLER_FEATURE_MapperMini_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_MODES; /**< Key of the argument </code>modes</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_MODES; /**< Key of the argument </code>modes</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_BUTTONMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>ButtonMappingItem</code> in feature <code>MapperMini</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_MODES; /**< Key of the argument </code>modes</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_UID; /**< Key of the argument </code>uid</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_MODES; /**< Key of the argument </code>modes</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_AXIS; /**< Key of the argument </code>axis</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MAPPER_MINI_AXISMAPPINGITEM_BUTTONS; /**< Key of the argument </code>buttons</code> of event <code>AxisMappingItem</code> in feature <code>MapperMini</code> */
 
 /**
  * @brief Send a command <code>MapButtonAction</code> in feature <code>MapperMini</code>
@@ -3674,80 +3684,80 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_MiniDrone_AddCallback (ARCONTROLLER_FEA
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_MiniDrone_RemoveCallback (ARCONTROLLER_FEATURE_MiniDrone_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateFlyingStateChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateFlyingStateChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_AUTOTAKEOFFMODECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAutoTakeOffModeChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_AUTOTAKEOFFMODECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAutoTakeOffModeChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_FLYINGMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PilotingStateFlyingModeChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_FLYINGMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PilotingStateFlyingModeChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PLANEGEARBOXCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStatePlaneGearBoxChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PLANEGEARBOXCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStatePlaneGearBoxChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGED_MASS_STORAGE_ID; /**< Key of the argument </code>mass_storage_id</code> of event <code>MediaRecordStatePictureStateChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXALTITUDECHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxAltitudeChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTILTCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateMaxTiltChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingSettingsStateBankedTurnChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingSettingsStateBankedTurnChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXVERTICALSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxVerticalSpeedChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_WHEELSCHANGED_PRESENT; /**< Key of the argument </code>present</code> of event <code>SpeedSettingsStateWheelsChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_WHEELSCHANGED_PRESENT; /**< Key of the argument </code>present</code> of event <code>SpeedSettingsStateWheelsChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXHORIZONTALSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxHorizontalSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXHORIZONTALSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxHorizontalSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXHORIZONTALSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxHorizontalSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXHORIZONTALSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxHorizontalSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXHORIZONTALSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxHorizontalSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXHORIZONTALSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxHorizontalSpeedChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXPLANEMODEROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxPlaneModeRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXPLANEMODEROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxPlaneModeRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXPLANEMODEROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxPlaneModeRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXPLANEMODEROTATIONSPEEDCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>SpeedSettingsStateMaxPlaneModeRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXPLANEMODEROTATIONSPEEDCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>SpeedSettingsStateMaxPlaneModeRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SPEEDSETTINGSSTATE_MAXPLANEMODEROTATIONSPEEDCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>SpeedSettingsStateMaxPlaneModeRotationSpeedChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_MOTOR; /**< Key of the argument </code>motor</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_MOTOR; /**< Key of the argument </code>motor</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTMOTORSVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductMotorsVersionChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTINERTIALVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductInertialVersionChanged</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTINERTIALVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductInertialVersionChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTINERTIALVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductInertialVersionChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_PRODUCTINERTIALVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductInertialVersionChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_CUTOUTMODECHANGED_ENABLE; /**< Key of the argument </code>enable</code> of event <code>SettingsStateCutOutModeChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_SETTINGSSTATE_CUTOUTMODECHANGED_ENABLE; /**< Key of the argument </code>enable</code> of event <code>SettingsStateCutOutModeChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_FLOODCONTROLSTATE_FLOODCONTROLCHANGED_DELAY; /**< Key of the argument </code>delay</code> of event <code>FloodControlStateFloodControlChanged</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_FLOODCONTROLSTATE_FLOODCONTROLCHANGED_DELAY; /**< Key of the argument </code>delay</code> of event <code>FloodControlStateFloodControlChanged</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_LIGHTSTATE_ID; /**< Key of the argument </code>id</code> of event <code>UsbAccessoryStateLightState</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_LIGHTSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>UsbAccessoryStateLightState</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_LIGHTSTATE_INTENSITY; /**< Key of the argument </code>intensity</code> of event <code>UsbAccessoryStateLightState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_LIGHTSTATE_ID; /**< Key of the argument </code>id</code> of event <code>UsbAccessoryStateLightState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_LIGHTSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>UsbAccessoryStateLightState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_LIGHTSTATE_INTENSITY; /**< Key of the argument </code>intensity</code> of event <code>UsbAccessoryStateLightState</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_CLAWSTATE_ID; /**< Key of the argument </code>id</code> of event <code>UsbAccessoryStateClawState</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_CLAWSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>UsbAccessoryStateClawState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_CLAWSTATE_ID; /**< Key of the argument </code>id</code> of event <code>UsbAccessoryStateClawState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_CLAWSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>UsbAccessoryStateClawState</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_ID; /**< Key of the argument </code>id</code> of event <code>UsbAccessoryStateGunState</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>UsbAccessoryStateGunState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_ID; /**< Key of the argument </code>id</code> of event <code>UsbAccessoryStateGunState</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_USBACCESSORYSTATE_GUNSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>UsbAccessoryStateGunState</code> in feature <code>MiniDrone</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_POSX; /**< Key of the argument </code>posx</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_POSY; /**< Key of the argument </code>posy</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_POSZ; /**< Key of the argument </code>posz</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_PSI; /**< Key of the argument </code>psi</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_TS; /**< Key of the argument </code>ts</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_POSX; /**< Key of the argument </code>posx</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_POSY; /**< Key of the argument </code>posy</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_POSZ; /**< Key of the argument </code>posz</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_PSI; /**< Key of the argument </code>psi</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEPOSITION_TS; /**< Key of the argument </code>ts</code> of event <code>NavigationDataStateDronePosition</code> in feature <code>MiniDrone</code> */
 
 /**
  * @brief Send a command <code>PilotingFlatTrim</code> in feature <code>MiniDrone</code>
@@ -4237,59 +4247,59 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Powerup_AddCallback (ARCONTROLLER_FEATU
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Powerup_RemoveCallback (ARCONTROLLER_FEATURE_Powerup_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ALERTSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateAlertStateChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_FLYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateFlyingStateChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_FLYINGSTATECHANGED_STATE; /**< Key of the argument </code>state</code> of event <code>PilotingStateFlyingStateChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_MOTORMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PilotingStateMotorModeChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_MOTORMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>PilotingStateMotorModeChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ATTITUDECHANGED_ROLL; /**< Key of the argument </code>roll</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ATTITUDECHANGED_PITCH; /**< Key of the argument </code>pitch</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ATTITUDECHANGED_YAW; /**< Key of the argument </code>yaw</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ATTITUDECHANGED_ROLL; /**< Key of the argument </code>roll</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ATTITUDECHANGED_PITCH; /**< Key of the argument </code>pitch</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ATTITUDECHANGED_YAW; /**< Key of the argument </code>yaw</code> of event <code>PilotingStateAttitudeChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ALTITUDECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStateAltitudeChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSTATE_ALTITUDECHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>PilotingStateAltitudeChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_SETTING; /**< Key of the argument </code>setting</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_SETTING; /**< Key of the argument </code>setting</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_CURRENT; /**< Key of the argument </code>current</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_MIN; /**< Key of the argument </code>min</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_PILOTINGSETTINGSSTATE_SETTINGCHANGED_MAX; /**< Key of the argument </code>max</code> of event <code>PilotingSettingsStateSettingChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_PICTURESTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStatePictureStateChangedV2</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_STATE; /**< Key of the argument </code>state</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDSTATE_VIDEOSTATECHANGEDV2_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordStateVideoStateChangedV2</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_PICTUREEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_PICTUREEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventPictureEventChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_VIDEOEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_VIDEOEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_VIDEOEVENTCHANGED_EVENT; /**< Key of the argument </code>event</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIARECORDEVENT_VIDEOEVENTCHANGED_ERROR; /**< Key of the argument </code>error</code> of event <code>MediaRecordEventVideoEventChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkSettingsStateWifiSelectionChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
-
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>Powerup</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFISCANLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiScanListChanged</code> in feature <code>Powerup</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_LINKQUALITYCHANGED_QUALITY; /**< Key of the argument </code>quality</code> of event <code>NetworkStateLinkQualityChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>NetworkStateWifiAuthChannelListChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>MediaStreamingStateVideoEnableChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>VideoSettingsStateAutorecordChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_NETWORKSTATE_LINKQUALITYCHANGED_QUALITY; /**< Key of the argument </code>quality</code> of event <code>NetworkStateLinkQualityChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_VIDEOSETTINGSSTATE_VIDEOMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>VideoSettingsStateVideoModeChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_MEDIASTREAMINGSTATE_VIDEOENABLECHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>MediaStreamingStateVideoEnableChanged</code> in feature <code>Powerup</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_SOUNDSSTATE_BUZZCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>SoundsStateBuzzChanged</code> in feature <code>Powerup</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>VideoSettingsStateAutorecordChanged</code> in feature <code>Powerup</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_VIDEOSETTINGSSTATE_VIDEOMODECHANGED_MODE; /**< Key of the argument </code>mode</code> of event <code>VideoSettingsStateVideoModeChanged</code> in feature <code>Powerup</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_POWERUP_SOUNDSSTATE_BUZZCHANGED_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>SoundsStateBuzzChanged</code> in feature <code>Powerup</code> */
 
 /**
  * @brief Send a command <code>PilotingPCMD</code> in feature <code>Powerup</code>
@@ -4579,28 +4589,28 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Rc_AddCallback (ARCONTROLLER_FEATURE_Rc
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Rc_RemoveCallback (ARCONTROLLER_FEATURE_Rc_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>ReceiverState</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERSTATE_PROTOCOL; /**< Key of the argument </code>protocol</code> of event <code>ReceiverState</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERSTATE_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>ReceiverState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>ReceiverState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERSTATE_PROTOCOL; /**< Key of the argument </code>protocol</code> of event <code>ReceiverState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERSTATE_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>ReceiverState</code> in feature <code>Rc</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELSMONITORSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>ChannelsMonitorState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELSMONITORSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>ChannelsMonitorState</code> in feature <code>Rc</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELVALUE_ID; /**< Key of the argument </code>id</code> of event <code>ChannelValue</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELVALUE_ACTION; /**< Key of the argument </code>action</code> of event <code>ChannelValue</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELVALUE_VALUE; /**< Key of the argument </code>value</code> of event <code>ChannelValue</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELVALUE_ID; /**< Key of the argument </code>id</code> of event <code>ChannelValue</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELVALUE_ACTION; /**< Key of the argument </code>action</code> of event <code>ChannelValue</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELVALUE_VALUE; /**< Key of the argument </code>value</code> of event <code>ChannelValue</code> in feature <code>Rc</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_CALIBRATION_TYPE; /**< Key of the argument </code>calibration_type</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_CHANNEL_ACTION; /**< Key of the argument </code>channel_action</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_REQUIRED; /**< Key of the argument </code>required</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_CALIBRATED; /**< Key of the argument </code>calibrated</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_NEUTRAL_CALIBRATED; /**< Key of the argument </code>neutral_calibrated</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_CALIBRATION_TYPE; /**< Key of the argument </code>calibration_type</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_CHANNEL_ACTION; /**< Key of the argument </code>channel_action</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_REQUIRED; /**< Key of the argument </code>required</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_CALIBRATED; /**< Key of the argument </code>calibrated</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CALIBRATIONSTATE_NEUTRAL_CALIBRATED; /**< Key of the argument </code>neutral_calibrated</code> of event <code>CalibrationState</code> in feature <code>Rc</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY_LEVEL; /**< Key of the argument </code>level</code> of event <code>ReceiverQuality</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY_LEVEL; /**< Key of the argument </code>level</code> of event <code>ReceiverQuality</code> in feature <code>Rc</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_SUPPORTED_TYPE; /**< Key of the argument </code>supported_type</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_CALIBRATED_TYPE; /**< Key of the argument </code>calibrated_type</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_INVERTED; /**< Key of the argument </code>inverted</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_ACTION; /**< Key of the argument </code>action</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_SUPPORTED_TYPE; /**< Key of the argument </code>supported_type</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_CALIBRATED_TYPE; /**< Key of the argument </code>calibrated_type</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_RC_CHANNELACTIONITEM_INVERTED; /**< Key of the argument </code>inverted</code> of event <code>ChannelActionItem</code> in feature <code>Rc</code> */
 
 /**
  * @brief Send a command <code>MonitorChannels</code> in feature <code>Rc</code>
@@ -4769,100 +4779,100 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_SkyController_AddCallback (ARCONTROLLER
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_SkyController_RemoveCallback (ARCONTROLLER_FEATURE_SkyController_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_BSSID; /**< Key of the argument </code>bssid</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_SSID; /**< Key of the argument </code>ssid</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_SECURED; /**< Key of the argument </code>secured</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_SAVED; /**< Key of the argument </code>saved</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_RSSI; /**< Key of the argument </code>rssi</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_FREQUENCY; /**< Key of the argument </code>frequency</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_BSSID; /**< Key of the argument </code>bssid</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_SSID; /**< Key of the argument </code>ssid</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_SECURED; /**< Key of the argument </code>secured</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_SAVED; /**< Key of the argument </code>saved</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_RSSI; /**< Key of the argument </code>rssi</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFILIST_FREQUENCY; /**< Key of the argument </code>frequency</code> of event <code>WifiStateWifiList</code> in feature <code>SkyController</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_CONNEXIONCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>WifiStateConnexionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_CONNEXIONCHANGED_STATUS; /**< Key of the argument </code>status</code> of event <code>WifiStateConnexionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_CONNEXIONCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>WifiStateConnexionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_CONNEXIONCHANGED_STATUS; /**< Key of the argument </code>status</code> of event <code>WifiStateConnexionChanged</code> in feature <code>SkyController</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>WifiStateWifiAuthChannelListChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>WifiStateWifiAuthChannelListChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>WifiStateWifiAuthChannelListChanged</code> in feature <code>SkyController</code> */
-
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFISIGNALCHANGED_LEVEL; /**< Key of the argument </code>level</code> of event <code>WifiStateWifiSignalChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_DEVICELIST_NAME; /**< Key of the argument </code>name</code> of event <code>DeviceStateDeviceList</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_CONNEXIONCHANGED_STATUS; /**< Key of the argument </code>status</code> of event <code>DeviceStateConnexionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_CONNEXIONCHANGED_DEVICENAME; /**< Key of the argument </code>deviceName</code> of event <code>DeviceStateConnexionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_CONNEXIONCHANGED_DEVICEPRODUCTID; /**< Key of the argument </code>deviceProductID</code> of event <code>DeviceStateConnexionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>WifiStateWifiAuthChannelListChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>WifiStateWifiAuthChannelListChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGED_IN_OR_OUT; /**< Key of the argument </code>in_or_out</code> of event <code>WifiStateWifiAuthChannelListChanged</code> in feature <code>SkyController</code> */
 
 
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFISIGNALCHANGED_LEVEL; /**< Key of the argument </code>level</code> of event <code>WifiStateWifiSignalChanged</code> in feature <code>SkyController</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTSERIALCHANGED_SERIALNUMBER; /**< Key of the argument </code>serialNumber</code> of event <code>SettingsStateProductSerialChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_DEVICELIST_NAME; /**< Key of the argument </code>name</code> of event <code>DeviceStateDeviceList</code> in feature <code>SkyController</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTVARIANTCHANGED_VARIANT; /**< Key of the argument </code>variant</code> of event <code>SettingsStateProductVariantChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>SkyController</code> */
-
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_BATTERYCHANGED_PERCENT; /**< Key of the argument </code>percent</code> of event <code>SkyControllerStateBatteryChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSFIXCHANGED_FIXED; /**< Key of the argument </code>fixed</code> of event <code>SkyControllerStateGpsFixChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_HEADING; /**< Key of the argument </code>heading</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_BATTERYSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>SkyControllerStateBatteryState</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q0; /**< Key of the argument </code>q0</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q1; /**< Key of the argument </code>q1</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q2; /**< Key of the argument </code>q2</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q3; /**< Key of the argument </code>q3</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_ACCESSPOINTSSIDCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>AccessPointSettingsStateAccessPointSSIDChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_ACCESSPOINTCHANNELCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>AccessPointSettingsStateAccessPointChannelChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>AccessPointSettingsStateWifiSelectionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>AccessPointSettingsStateWifiSelectionChanged</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>AccessPointSettingsStateWifiSelectionChanged</code> in feature <code>SkyController</code> */
-
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_GAMEPADINFOSSTATE_GAMEPADCONTROL_TYPE; /**< Key of the argument </code>type</code> of event <code>GamepadInfosStateGamepadControl</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_GAMEPADINFOSSTATE_GAMEPADCONTROL_ID; /**< Key of the argument </code>id</code> of event <code>GamepadInfosStateGamepadControl</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_GAMEPADINFOSSTATE_GAMEPADCONTROL_NAME; /**< Key of the argument </code>name</code> of event <code>GamepadInfosStateGamepadControl</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_CONNEXIONCHANGED_STATUS; /**< Key of the argument </code>status</code> of event <code>DeviceStateConnexionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_CONNEXIONCHANGED_DEVICENAME; /**< Key of the argument </code>deviceName</code> of event <code>DeviceStateConnexionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_DEVICESTATE_CONNEXIONCHANGED_DEVICEPRODUCTID; /**< Key of the argument </code>deviceProductID</code> of event <code>DeviceStateConnexionChanged</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_CURRENTBUTTONMAPPINGS_KEY_ID; /**< Key of the argument </code>key_id</code> of event <code>ButtonMappingsStateCurrentButtonMappings</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_CURRENTBUTTONMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>ButtonMappingsStateCurrentButtonMappings</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTSERIALCHANGED_SERIALNUMBER; /**< Key of the argument </code>serialNumber</code> of event <code>SettingsStateProductSerialChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTVARIANTCHANGED_VARIANT; /**< Key of the argument </code>variant</code> of event <code>SettingsStateProductVariantChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTVERSIONCHANGED_SOFTWARE; /**< Key of the argument </code>software</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_PRODUCTVERSIONCHANGED_HARDWARE; /**< Key of the argument </code>hardware</code> of event <code>SettingsStateProductVersionChanged</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_AVAILABLEBUTTONMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>ButtonMappingsStateAvailableButtonMappings</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_AVAILABLEBUTTONMAPPINGS_NAME; /**< Key of the argument </code>name</code> of event <code>ButtonMappingsStateAvailableButtonMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_BATTERYCHANGED_PERCENT; /**< Key of the argument </code>percent</code> of event <code>SkyControllerStateBatteryChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSFIXCHANGED_FIXED; /**< Key of the argument </code>fixed</code> of event <code>SkyControllerStateGpsFixChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_LATITUDE; /**< Key of the argument </code>latitude</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_LONGITUDE; /**< Key of the argument </code>longitude</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_ALTITUDE; /**< Key of the argument </code>altitude</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_GPSPOSITIONCHANGED_HEADING; /**< Key of the argument </code>heading</code> of event <code>SkyControllerStateGpsPositionChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_BATTERYSTATE_STATE; /**< Key of the argument </code>state</code> of event <code>SkyControllerStateBatteryState</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q0; /**< Key of the argument </code>q0</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q1; /**< Key of the argument </code>q1</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q2; /**< Key of the argument </code>q2</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SKYCONTROLLERSTATE_ATTITUDECHANGED_Q3; /**< Key of the argument </code>q3</code> of event <code>SkyControllerStateAttitudeChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_ACCESSPOINTSSIDCHANGED_SSID; /**< Key of the argument </code>ssid</code> of event <code>AccessPointSettingsStateAccessPointSSIDChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_ACCESSPOINTCHANNELCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>AccessPointSettingsStateAccessPointChannelChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_WIFISELECTIONCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>AccessPointSettingsStateWifiSelectionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_WIFISELECTIONCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>AccessPointSettingsStateWifiSelectionChanged</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_ACCESSPOINTSETTINGSSTATE_WIFISELECTIONCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>AccessPointSettingsStateWifiSelectionChanged</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_GAMEPADINFOSSTATE_GAMEPADCONTROL_TYPE; /**< Key of the argument </code>type</code> of event <code>GamepadInfosStateGamepadControl</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_GAMEPADINFOSSTATE_GAMEPADCONTROL_ID; /**< Key of the argument </code>id</code> of event <code>GamepadInfosStateGamepadControl</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_GAMEPADINFOSSTATE_GAMEPADCONTROL_NAME; /**< Key of the argument </code>name</code> of event <code>GamepadInfosStateGamepadControl</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_CURRENTAXISMAPPINGS_AXIS_ID; /**< Key of the argument </code>axis_id</code> of event <code>AxisMappingsStateCurrentAxisMappings</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_CURRENTAXISMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>AxisMappingsStateCurrentAxisMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_CURRENTBUTTONMAPPINGS_KEY_ID; /**< Key of the argument </code>key_id</code> of event <code>ButtonMappingsStateCurrentButtonMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_CURRENTBUTTONMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>ButtonMappingsStateCurrentButtonMappings</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_AVAILABLEAXISMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>AxisMappingsStateAvailableAxisMappings</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_AVAILABLEAXISMAPPINGS_NAME; /**< Key of the argument </code>name</code> of event <code>AxisMappingsStateAvailableAxisMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_AVAILABLEBUTTONMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>ButtonMappingsStateAvailableButtonMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_BUTTONMAPPINGSSTATE_AVAILABLEBUTTONMAPPINGS_NAME; /**< Key of the argument </code>name</code> of event <code>ButtonMappingsStateAvailableButtonMappings</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_CURRENTAXISFILTERS_AXIS_ID; /**< Key of the argument </code>axis_id</code> of event <code>AxisFiltersStateCurrentAxisFilters</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_CURRENTAXISFILTERS_FILTER_UID_OR_BUILDER; /**< Key of the argument </code>filter_uid_or_builder</code> of event <code>AxisFiltersStateCurrentAxisFilters</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_CURRENTAXISMAPPINGS_AXIS_ID; /**< Key of the argument </code>axis_id</code> of event <code>AxisMappingsStateCurrentAxisMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_CURRENTAXISMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>AxisMappingsStateCurrentAxisMappings</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_PRESETAXISFILTERS_FILTER_UID; /**< Key of the argument </code>filter_uid</code> of event <code>AxisFiltersStatePresetAxisFilters</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_PRESETAXISFILTERS_NAME; /**< Key of the argument </code>name</code> of event <code>AxisFiltersStatePresetAxisFilters</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_AVAILABLEAXISMAPPINGS_MAPPING_UID; /**< Key of the argument </code>mapping_uid</code> of event <code>AxisMappingsStateAvailableAxisMappings</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISMAPPINGSSTATE_AVAILABLEAXISMAPPINGS_NAME; /**< Key of the argument </code>name</code> of event <code>AxisMappingsStateAvailableAxisMappings</code> in feature <code>SkyController</code> */
 
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_COPILOTINGSTATE_PILOTINGSOURCE_SOURCE; /**< Key of the argument </code>source</code> of event <code>CoPilotingStatePilotingSource</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_CURRENTAXISFILTERS_AXIS_ID; /**< Key of the argument </code>axis_id</code> of event <code>AxisFiltersStateCurrentAxisFilters</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_CURRENTAXISFILTERS_FILTER_UID_OR_BUILDER; /**< Key of the argument </code>filter_uid_or_builder</code> of event <code>AxisFiltersStateCurrentAxisFilters</code> in feature <code>SkyController</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS; /**< Key of the argument </code>status</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_X_QUALITY; /**< Key of the argument </code>X_Quality</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Y_QUALITY; /**< Key of the argument </code>Y_Quality</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Z_QUALITY; /**< Key of the argument </code>Z_Quality</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>CalibrationStateMagnetoCalibrationQualityUpdatesState</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_PRESETAXISFILTERS_FILTER_UID; /**< Key of the argument </code>filter_uid</code> of event <code>AxisFiltersStatePresetAxisFilters</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_AXISFILTERSSTATE_PRESETAXISFILTERS_NAME; /**< Key of the argument </code>name</code> of event <code>AxisFiltersStatePresetAxisFilters</code> in feature <code>SkyController</code> */
+
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_COPILOTINGSTATE_PILOTINGSOURCE_SOURCE; /**< Key of the argument </code>source</code> of event <code>CoPilotingStatePilotingSource</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS; /**< Key of the argument </code>status</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_X_QUALITY; /**< Key of the argument </code>X_Quality</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Y_QUALITY; /**< Key of the argument </code>Y_Quality</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Z_QUALITY; /**< Key of the argument </code>Z_Quality</code> of event <code>CalibrationStateMagnetoCalibrationState</code> in feature <code>SkyController</code> */
+
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE_ENABLED; /**< Key of the argument </code>enabled</code> of event <code>CalibrationStateMagnetoCalibrationQualityUpdatesState</code> in feature <code>SkyController</code> */
 
 
 /**
@@ -5307,30 +5317,30 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Wifi_AddCallback (ARCONTROLLER_FEATURE_
  */
 eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Wifi_RemoveCallback (ARCONTROLLER_FEATURE_Wifi_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_CALLBACK_t callback, void *customData);
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_SSID; /**< Key of the argument </code>ssid</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_RSSI; /**< Key of the argument </code>rssi</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_BAND; /**< Key of the argument </code>band</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_SSID; /**< Key of the argument </code>ssid</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_RSSI; /**< Key of the argument </code>rssi</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_BAND; /**< Key of the argument </code>band</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SCANNEDITEM_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>ScannedItem</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_AUTHORIZEDCHANNEL_BAND; /**< Key of the argument </code>band</code> of event <code>AuthorizedChannel</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_AUTHORIZEDCHANNEL_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>AuthorizedChannel</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_AUTHORIZEDCHANNEL_ENVIRONMENT; /**< Key of the argument </code>environment</code> of event <code>AuthorizedChannel</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_AUTHORIZEDCHANNEL_BAND; /**< Key of the argument </code>band</code> of event <code>AuthorizedChannel</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_AUTHORIZEDCHANNEL_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>AuthorizedChannel</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_AUTHORIZEDCHANNEL_ENVIRONMENT; /**< Key of the argument </code>environment</code> of event <code>AuthorizedChannel</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_APCHANNELCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>ApChannelChanged</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_APCHANNELCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>ApChannelChanged</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_APCHANNELCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>ApChannelChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_APCHANNELCHANGED_TYPE; /**< Key of the argument </code>type</code> of event <code>ApChannelChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_APCHANNELCHANGED_BAND; /**< Key of the argument </code>band</code> of event <code>ApChannelChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_APCHANNELCHANGED_CHANNEL; /**< Key of the argument </code>channel</code> of event <code>ApChannelChanged</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SECURITYCHANGED_KEY; /**< Key of the argument </code>key</code> of event <code>SecurityChanged</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SECURITYCHANGED_KEY_TYPE; /**< Key of the argument </code>key_type</code> of event <code>SecurityChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SECURITYCHANGED_KEY; /**< Key of the argument </code>key</code> of event <code>SecurityChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SECURITYCHANGED_KEY_TYPE; /**< Key of the argument </code>key_type</code> of event <code>SecurityChanged</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_COUNTRYCHANGED_SELECTION_MODE; /**< Key of the argument </code>selection_mode</code> of event <code>CountryChanged</code> in feature <code>Wifi</code> */
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_COUNTRYCHANGED_CODE; /**< Key of the argument </code>code</code> of event <code>CountryChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_COUNTRYCHANGED_SELECTION_MODE; /**< Key of the argument </code>selection_mode</code> of event <code>CountryChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_COUNTRYCHANGED_CODE; /**< Key of the argument </code>code</code> of event <code>CountryChanged</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_ENVIRONMENTCHANGED_ENVIRONMENT; /**< Key of the argument </code>environment</code> of event <code>EnvironmentChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_ENVIRONMENTCHANGED_ENVIRONMENT; /**< Key of the argument </code>environment</code> of event <code>EnvironmentChanged</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_RSSICHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>RssiChanged</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_RSSICHANGED_RSSI; /**< Key of the argument </code>rssi</code> of event <code>RssiChanged</code> in feature <code>Wifi</code> */
 
-extern const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SUPPORTEDCOUNTRIES_COUNTRIES; /**< Key of the argument </code>countries</code> of event <code>SupportedCountries</code> in feature <code>Wifi</code> */
+extern AR_EXPORT const char *ARCONTROLLER_DICTIONARY_KEY_WIFI_SUPPORTEDCOUNTRIES_COUNTRIES; /**< Key of the argument </code>countries</code> of event <code>SupportedCountries</code> in feature <code>Wifi</code> */
 
 /**
  * @brief Send a command <code>Scan</code> in feature <code>Wifi</code>
@@ -5425,6 +5435,7 @@ eARCONTROLLER_ERROR ARCONTROLLER_FEATURE_Wifi_SetNetworkController (ARCONTROLLER
  */
 ARCONTROLLER_DICTIONARY_ELEMENT_t *ARCONTROLLER_Wifi_GetCommandElements (ARCONTROLLER_FEATURE_Wifi_t *feature, eARCONTROLLER_DICTIONARY_KEY commandKey, eARCONTROLLER_ERROR *error);
 
+#undef AR_EXPORT
 #endif /* _ARCONTROLLER_FEATURE_H_ */
 
 // END GENERATED CODE
