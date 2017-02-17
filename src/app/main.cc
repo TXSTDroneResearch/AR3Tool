@@ -14,6 +14,7 @@ extern "C" {
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
 
+#include "drone/object.h"
 #include "drone/stream_decoder.h"
 
 #define TAG "main.cc"
@@ -67,25 +68,40 @@ struct DeviceState_t {
 };
 
 // Converts a given Euler angles to Rotation Matrix
+// From (X=forward, Y=up, Z=right) to pinhole (X=right, Y=down, Z=forward)
 cv::Mat ConvertEulerToMatrixYPR(const cv::Mat& euler) {
-  double ca = cos(euler.at<double>(0));
-  double sa = sin(euler.at<double>(0));
-  double cb = cos(euler.at<double>(1));
-  double sb = sin(euler.at<double>(1));
-  double ch = cos(euler.at<double>(2));
-  double sh = sin(euler.at<double>(2));
+  double ch = cos(euler.at<double>(0));
+  double sh = sin(euler.at<double>(0));
+  double ca = cos(euler.at<double>(1));
+  double sa = sin(euler.at<double>(1));
+  double cb = cos(euler.at<double>(2));
+  double sb = sin(euler.at<double>(2));
 
-  // Yaw
-  cv::Mat Rx = (cv::Mat_<double>(3, 3) << 1, 0, 0, 0, ch, -sh, 0, sh, ch);
+  // clang-format off
+  // Rotation about z-axis (roll/bank) +clockwise
+  cv::Mat Rz = (cv::Mat_<double>(3, 3) <<
+    1,  0,   0,
+    0, cb, -sb,
+    0, sb,  cb
+  );
 
-  // Pitch
-  cv::Mat Ry = (cv::Mat_<double>(3, 3) << cb, 0, sb, 0, 1, 0, -sb, 0, cb);
+  // Rotation about y-axis (yaw/heading) +clockwise
+  cv::Mat Ry = (cv::Mat_<double>(3, 3) <<
+     sh, 0, ch,
+      0, 1,  0,
+    -ch, 0, sh
+  );
 
-  // Roll
-  cv::Mat Rz = (cv::Mat_<double>(3, 3) << ca, -sa, 0, sa, ca, 0, 0, 0, 1);
+  // Rotation about x-axis (pitch/attitude) +up/-down
+  cv::Mat Rx = (cv::Mat_<double>(3, 3) <<
+    ca, -sa, 0,
+    sa,  ca, 0,
+     0,   0, 1
+  );
+  // clang-format on
 
-  // Rotation order: Yaw -> Pitch -> Roll
-  return Rz * Ry * Rx;
+  // Rotation order:
+  return (Rz * Rx) * Ry;
 }
 
 cv::Point3f operator*(cv::Mat M, const cv::Point3f& p) {
@@ -126,8 +142,8 @@ void* DisplayThread(void* param) {
         auto stats_loc =
             cv::format("GPS: %f %f %f", device_state->latitude,
                        device_state->longitude, device_state->altitude);
-        auto stats_rot = cv::format("PYR: %f %f %f", device_state->pitch,
-                                    device_state->yaw, device_state->roll);
+        auto stats_rot = cv::format("YPR: %f %f %f", device_state->yaw,
+                                    device_state->pitch, device_state->roll);
         auto stats_cam = cv::format("CAM: %d %d", device_state->camera_tilt,
                                     device_state->camera_pan);
         auto stats_alt = cv::format("ALT: %f", device_state->alt_hiprecision);
@@ -158,19 +174,36 @@ void* DisplayThread(void* param) {
         // [fx, 0, cx]
         // [0, fy, cy]
         // [0,  0,  1]
-        // 515.752791 0.000000 428.777745
-        // 0.000000 506.591215 243.577033
-        // 0.000000 0.000000 1.000000
-        double _cm[9] = {515.752791, 0, 428, 0, 506.591215, 240, 0, 0, 1};
+        // 515.752791   0.000000 428.777745
+        //   0.000000 506.591215 243.577033
+        //   0.000000   0.000000   1.000000
+        double _cm[9] = {
+            515.752791, 0, 428, 0, 506.591215, 240, 0, 0, 1,
+        };
         cv::Mat cam_matrix = cv::Mat(3, 3, CV_64FC1, _cm);
 
+        // Rotation matrix: How much the virtual camera should be rotated to
+        // match the orientation of the physical camera
         cv::Mat rot_matrix = ConvertEulerToMatrixYPR(
-            cv::Mat(cv::Vec3d(device_state->yaw, 0, 0)));
+            cv::Mat(cv::Vec3d(-device_state->yaw + (CV_PI * 3.0 / 2.0),
+                              -device_state->pitch, -device_state->roll)));
+
+        // clang-format off
+        cv::Mat Rp = (cv::Mat_<double>(3, 3) <<
+           0,  0, 1,
+           0, -1, 0,
+           1,  0, 0
+        );
+        // clang-format on
+
+        // -> pinhole camera model
+        rot_matrix = Rp * rot_matrix;
+
         cv::Vec3d rvec;
         cv::Rodrigues(rot_matrix, rvec);
 
         std::vector<cv::Point3f> points3d(4);
-        points3d[3] = {5, 0, 0};  // origin
+        points3d[3] = {0, 0, 0};  // origin
         points3d[0] = points3d[3] + cv::Point3f(1, 0, 0);
         points3d[1] = points3d[3] + cv::Point3f(0, 1, 0);
         points3d[2] = points3d[3] + cv::Point3f(0, 0, 1);
@@ -183,9 +216,17 @@ void* DisplayThread(void* param) {
         cv::projectPoints(points3d, rvec, tvec, cam_matrix, dcoeffs, points2d);
 
         for (int i = 0; i < 3; i++) {
+          auto row = cv::format("%f %f %f", rot_matrix.at<double>(i, 0),
+                                rot_matrix.at<double>(i, 1),
+                                rot_matrix.at<double>(i, 2));
+          cv::putText(mat, row, cv::Point(20, 120 + i * 20),
+                      cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
+                      cv::Scalar(255, 255, 255));
+
+          // BGR color format
           cv::Scalar col(0);
           col[i] = 255;
-          cv::line(mat, points2d[3], points2d[i], col);
+          cv::circle(mat, points2d[i], 10, col, -1);
         }
       } else if (device_state->control_state == CONTROLSTATE_CALIBRATING) {
         CalibrationState_t* calibration_state = device_state->calibration_state;
@@ -709,10 +750,7 @@ void* InputThread(void* param) {
     }
 
     if (device_state->control_state == CONTROLSTATE_COMMANDING) {
-      switch (c) {
-        case 'm': {
-        }
-      }
+      // No commands yet!
     } else if (device_state->control_state == CONTROLSTATE_CALIBRATING) {
       // calibration commands
       switch (c) {
@@ -737,7 +775,7 @@ int main(int argc, char* argv[]) {
   int status = 0;
   DeviceState_t device_state;
   std::memset(&device_state, 0, sizeof(device_state));
-  ARSAL_Print_SetMinimumLevel(ARSAL_PRINT_VERBOSE);
+  ARSAL_Print_SetMinimumLevel(ARSAL_PRINT_INFO);
 
   device_state.calibration_state = new CalibrationState_t;
   std::memset(device_state.calibration_state, 0, sizeof(CalibrationState_t));

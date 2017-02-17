@@ -14,6 +14,7 @@ project("AR3Tool-drone")
     project_root.."/third_party/gflags/src",
     
     project_root.."/third_party/ARLibs/include",
+    project_root.."/third_party/Eigen/include",
     project_root.."/third_party/ffmpeg/include",
   })
   files({"*.h", "*.cc"})

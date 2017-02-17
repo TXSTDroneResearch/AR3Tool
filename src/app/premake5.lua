@@ -14,9 +14,7 @@ project("AR3Tool-app")
     }
   filter {}
 
-  libdirs {
-    project_root.."/third_party/opencv/build/lib/Release",
-  }
+  
 
   filter("platforms:Windows")
     links({
@@ -24,12 +22,18 @@ project("AR3Tool-app")
       "libardiscovery",
       "libarsal",
     })
+
+    libdirs({project_root.."/third_party/opencv/build_win32/lib/Release"})
+    includedirs({project_root.."/third_party/opencv/build_win32"})
   filter("platforms:Linux")
     links({
       "arcontroller",
       "ardiscovery",
       "arsal",
     })
+
+    libdirs({project_root.."/third_party/opencv/build_linux/lib/Release"})
+    includedirs({project_root.."/third_party/opencv/build_linux"})
   filter {}
 
   links({
@@ -82,7 +86,6 @@ project("AR3Tool-app")
   includedirs({
     project_root.."/third_party/gflags/src",
 
-    project_root.."/third_party/opencv/build",
     project_root.."/third_party/opencv/include",
     project_root.."/third_party/opencv/modules/calib3d/include",
     project_root.."/third_party/opencv/modules/core/include",
@@ -102,6 +105,7 @@ project("AR3Tool-app")
     project_root.."/third_party/opencv/modules/videostab/include",
 
     project_root.."/third_party/ARLibs/include",
+    project_root.."/third_party/Eigen/include",
     project_root.."/third_party/ffmpeg/include",
   })
   files({"*.h", "*.cc"})
