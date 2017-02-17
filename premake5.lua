@@ -136,6 +136,8 @@ solution("AR3Tool")
   end
   configurations({"Checked", "Debug", "Release"})
 
+  include("third_party/libgamepad.lua")
+
   include("src/app")
   include("src/base")
   include("src/drone")

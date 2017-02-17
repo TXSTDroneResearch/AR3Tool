@@ -46,7 +46,6 @@ def main():
     sys.exit(1)
     return
   
-  print("Calling %s" % premake5_bin)
   return_code = shell_call([
       premake5_bin,
       '--scripts=%s' % (premake_path),
