@@ -196,6 +196,11 @@ def build_opencv():
 
     opencv_path = os.path.join(THIRD_PARTY_PATH, 'opencv')
     build_path = os.path.join(opencv_path, 'build')
+    if sys.platform == 'win32':
+        build_path += '_win32'
+    else:
+        build_path += '_linux'
+
     cmake_args = "-DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DBUILD_SHARED_LIBS=ON -DBUILD_WITH_STATIC_CRT=OFF \
         -DWITH_QT=OFF -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_FFMPEG=OFF \
@@ -205,23 +210,39 @@ def build_opencv():
     if not os.path.exists(build_path):
         os.makedirs(build_path)
 
-    cmd = ['cmake', '-G']
+    cmd = ['cmake']
     if sys.platform == 'win32':
+        cmd.append('-G')
         cmd.append('Visual Studio 14 2015 Win64')
 
     cmd.extend(cmake_args.split(' '))
     cmd.append('..')
     pcall(cmd, cwd=build_path)
 
-    cmd = [
-        'msbuild',
-        'OpenCV.sln',
-        '/nologo',
-        '/m',
-        '/v:m',
-        '/p:Configuration=Release',
-    ]
-    return pcall(cmd, cwd=build_path)
+    if sys.platform == 'win32':
+        cmd = [
+            'msbuild',
+            'OpenCV.sln',
+            '/nologo',
+            '/m',
+            '/v:m',
+            '/p:Configuration=Release',
+        ]
+
+        return pcall(cmd, cwd=build_path)
+    else:
+        res = pcall([
+            'make',
+            '-j',
+        ], cwd=build_path)
+
+        if res != 0:
+            return res
+
+        return pcall([
+            'make',
+            'install',
+        ], cwd=build_path)
 
 def build_ffmpeg():
     ffmpeg_path = os.path.join(THIRD_PARTY_PATH, 'ffmpeg')
