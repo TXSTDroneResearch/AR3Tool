@@ -1,7 +1,6 @@
 # Folders
 .*/
-libs/
-obj/
+build/
 
 # Prerequisites
 *.d
