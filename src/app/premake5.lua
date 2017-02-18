@@ -37,6 +37,8 @@ project("AR3Tool-app")
   filter {}
 
   links({
+    "libgamepad",
+
     --[[
     -- For static libar
     "gcc",
@@ -82,6 +84,7 @@ project("AR3Tool-app")
     -- "AR3Tool-gui",
   })
   defines({
+    "GAMEPAD_STATIC_LIB",
   })
   includedirs({
     project_root.."/third_party/gflags/src",

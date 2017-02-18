@@ -17,6 +17,8 @@ extern "C" {
 #include "drone/object.h"
 #include "drone/stream_decoder.h"
 
+#include "third_party/libgamepad/gamepad.h"
+
 #define TAG "main.cc"
 
 #define BEBOP_IP_ADDRESS "192.168.42.1"
@@ -46,6 +48,7 @@ struct DeviceState_t {
   ARSAL_Thread_t stream_thread;
   ARSAL_Sem_t state_sem;
   ARSAL_Sem_t frame_sem;
+  bool running;
 
   ARSAL_Thread_t input_thread;
 
@@ -56,6 +59,7 @@ struct DeviceState_t {
   ControlState control_state;
   CalibrationState_t* calibration_state;
 
+  uint32_t flying_state;
   uint8_t battery;
   float pitch, yaw, roll;  // yaw: [-pi, pi], pitch & roll: [-pi/2, pi/2]
   double latitude, longitude, altitude;
@@ -216,12 +220,14 @@ void* DisplayThread(void* param) {
         cv::projectPoints(points3d, rvec, tvec, cam_matrix, dcoeffs, points2d);
 
         for (int i = 0; i < 3; i++) {
+#if 0
           auto row = cv::format("%f %f %f", rot_matrix.at<double>(i, 0),
                                 rot_matrix.at<double>(i, 1),
                                 rot_matrix.at<double>(i, 2));
           cv::putText(mat, row, cv::Point(20, 120 + i * 20),
                       cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
                       cv::Scalar(255, 255, 255));
+#endif
 
           // BGR color format
           cv::Scalar col(0);
@@ -338,6 +344,7 @@ void* DisplayThread(void* param) {
       }
 
       // Send the pixel data to the display
+      cv::cvtColor(mat, mat, cv::COLOR_RGB2BGR);
       cv::imshow("Stream Display", mat);
       cv::waitKey(5);
     }
@@ -621,6 +628,29 @@ void OnCommandReceived(eARCONTROLLER_DICTIONARY_KEY commandKey,
           device_state->camera_tilt_max);
     }
   }
+
+  // if the command received is a flying state changed
+  if ((commandKey ==
+       ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED) &&
+      (elementDictionary != NULL)) {
+    ARCONTROLLER_DICTIONARY_ARG_t* arg = NULL;
+    ARCONTROLLER_DICTIONARY_ELEMENT_t* element = NULL;
+
+    // get the command received in the device controller
+    HASH_FIND_STR(elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY,
+                  element);
+    if (element != NULL) {
+      // get the value
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE,
+          arg);
+
+      if (arg != NULL) {
+        device_state->flying_state = arg->value.I32;
+      }
+    }
+  }
 }
 
 bool exit_requested = false;
@@ -660,6 +690,7 @@ int ReadArgument(char* buf, size_t len) {
   return 0;
 }
 
+#if 0
 void* InputThread(void* param) {
   ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Input thread starting...");
 
@@ -770,12 +801,81 @@ void* InputThread(void* param) {
     }
   }
 }
+#endif
+
+void* GamepadInputThread(void* param) {
+  DeviceState_t* device_state = reinterpret_cast<DeviceState_t*>(param);
+
+  GamepadInit();
+  eARCONTROLLER_ERROR controller_error;
+  eARCONTROLLER_DEVICE_STATE state;
+
+  auto drone = device_state->controller->aRDrone3;
+  while (device_state->running) {
+    state = ARCONTROLLER_Device_GetState(device_state->controller,
+                                         &controller_error);
+    if (controller_error != ARCONTROLLER_OK) {
+      break;
+    }
+    
+    GamepadUpdate();
+    if (state == ARCONTROLLER_DEVICE_STATE_RUNNING &&
+        GamepadIsConnected(GAMEPAD_0)) {
+      if (device_state->flying_state ==
+          ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED) {
+        if (GamepadButtonTriggered(GAMEPAD_0, BUTTON_START)) {
+          drone->sendPilotingTakeOff(drone);
+        }
+      } else {
+        if (GamepadButtonTriggered(GAMEPAD_0, BUTTON_BACK)) {
+          drone->sendPilotingLanding(drone);
+        } else if (GamepadButtonTriggered(GAMEPAD_0, BUTTON_B)) {
+          drone->sendPilotingEmergency(drone);
+        }
+
+        // sticks
+        Eigen::Vector2f ls, rs;
+        GamepadStickNormXY(GAMEPAD_0, STICK_LEFT, &ls.x(), &ls.y());
+        GamepadStickNormXY(GAMEPAD_0, STICK_RIGHT, &rs.x(), &rs.y());
+
+        // triggers
+        float lt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_LEFT);
+        float rt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_RIGHT);
+
+        // Cube the sticks for fine-tune control
+        ls = ls.cwiseProduct(ls).cwiseProduct(ls);
+        rs = rs.cwiseProduct(rs).cwiseProduct(rs);
+        lt = lt * lt * lt;
+        rt = rt * rt * rt;
+
+        // Scale up
+        ls *= 100;
+        rs *= 100;
+
+        lt *= -100;
+        rt *= 100;
+
+        int8_t roll = (int8_t)ls.x();
+        int8_t pitch = (int8_t)ls.y();
+        int8_t yaw = (int8_t)rs.x();
+        int8_t gaz = (int8_t)(lt + rt);
+
+        drone->setPilotingPCMD(drone, 1, roll, pitch, yaw, gaz, 0);
+      }
+    }
+
+    ARSAL_Time_Sleep(10);
+  }
+
+  return nullptr;
+}
 
 int main(int argc, char* argv[]) {
   int status = 0;
   DeviceState_t device_state;
   std::memset(&device_state, 0, sizeof(device_state));
   ARSAL_Print_SetMinimumLevel(ARSAL_PRINT_INFO);
+  device_state.running = true;
 
   device_state.calibration_state = new CalibrationState_t;
   std::memset(device_state.calibration_state, 0, sizeof(CalibrationState_t));
@@ -922,7 +1022,7 @@ int main(int argc, char* argv[]) {
     ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Device is now in the running state.");
     device_state.control_state = CONTROLSTATE_COMMANDING;
 
-    status = ARSAL_Thread_Create(&device_state.input_thread, InputThread,
+    status = ARSAL_Thread_Create(&device_state.input_thread, GamepadInputThread,
                                  reinterpret_cast<void*>(&device_state));
     if (status != 0) {
       ARSAL_PRINT(ARSAL_PRINT_ERROR, TAG, "Failed to create input thread.");
@@ -998,6 +1098,7 @@ int main(int argc, char* argv[]) {
   }
 
   // Cleanup.
+  device_state.running = false;
   if (device_state.input_thread) {
     ARSAL_Thread_Join(device_state.input_thread, nullptr);
     ARSAL_Thread_Destroy(&device_state.input_thread);
