@@ -189,18 +189,22 @@ def git_submodule_update():
             '--recursive',
         ])
 
-def build_opencv():
+def build_opencv(force=False):
     if not has_bin('cmake'):
         print("CMake not found! Cannot build OpenCV!")
         return 1
 
     opencv_path = os.path.join(THIRD_PARTY_PATH, 'opencv')
     build_path = os.path.join(opencv_path, 'build')
-    install_path = os.path.join(opencv_path, 'install')
+    install_path = os.path.join(THIRD_PARTY_PATH, 'opencv_install')
     if sys.platform == 'win32':
         build_path += '_win32'
     else:
         build_path += '_linux'
+
+    if os.path.exists(os.path.join(install_path, 'include')) and not force:
+        print(" - Found existing OpenCV")
+        return 0
 
     cmake_args = "-DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DBUILD_SHARED_LIBS=ON -DBUILD_WITH_STATIC_CRT=OFF \
@@ -389,16 +393,16 @@ class SetupCommand(Command):
         print('')
 
         # Setup submodules.
-        print('- git submodule init / update...')
+        print(' - git submodule init / update...')
         git_submodule_update()
         print('')
 
-        print("- building OpenCV...")
+        print(" - building OpenCV...")
         if build_opencv() != 0:
-            print("Failed to build OpenCV!")
+            print(" - Failed to build OpenCV!")
             return 1
 
-        print('Success!')
+        print(' - Success!')
         return 0
 
 

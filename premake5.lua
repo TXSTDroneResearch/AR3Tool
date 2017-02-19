@@ -83,6 +83,7 @@ filter("platforms:Linux")
 filter({"platforms:Linux", "language:C++"})
   buildoptions({
     "-std=c++1y",
+    "-Wno-error=unused-result"
   })
   links({
     -- "c++",

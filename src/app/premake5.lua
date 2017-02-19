@@ -22,7 +22,7 @@ project("AR3Tool-app")
     })
 
     libdirs({
-      project_root.."/third_party/opencv/install/x64/vc14/lib",
+      project_root.."/third_party/opencv_install/x64/vc14/lib",
       project_root.."/third_party/ARLibs/mingw64/bin",
       project_root.."/third_party/ffmpeg/msc140/bin"
     })
@@ -38,7 +38,7 @@ project("AR3Tool-app")
 
     libdirs({
       project_root.."/third_party/ARLibs/gcc/lib",
-      project_root.."/third_party/opencv/install/lib",
+      project_root.."/third_party/opencv_install/lib",
       project_root.."/third_party/ffmpeg/gcc/lib",
 
       -- Include local libs
@@ -46,8 +46,7 @@ project("AR3Tool-app")
     })
   filter {}
 
-  libdirs({project_root.."/third_party/opencv/install/x64/vc14/lib"})
-  includedirs({project_root.."/third_party/opencv/install/include"})
+  includedirs({project_root.."/third_party/opencv_install/include"})
 
   local cv_libs = {
     "opencv_core",

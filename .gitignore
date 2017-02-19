@@ -1,6 +1,7 @@
 # Folders
 .*/
 build/
+third_party/opencv_install/
 
 # Prerequisites
 *.d

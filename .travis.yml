@@ -5,6 +5,11 @@ compiler:
 os:
   - linux
 
+cache:
+  directories:
+    - tools/build/bin
+    - third_party/opencv_install
+
 env:
   global:
     - QTDIR=/opt/qt58
@@ -28,6 +33,12 @@ addons:
       # - libc++-dev
       - libudev-dev
       - libav-tools
+      - libavcodec-dev
+      - libavdevice-dev
+      - libavfilter-dev
+      - libavformat-dev
+      - libavresample-dev
+      - libavutil-dev
       - qt58-meta-full
 
 git:
