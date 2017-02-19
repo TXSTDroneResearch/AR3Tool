@@ -104,7 +104,7 @@ cv::Mat ConvertEulerToMatrixYPR(const cv::Mat& euler) {
   );
   // clang-format on
 
-  // Rotation order:
+  // Rotation order: YPR
   return (Rz * Rx) * Ry;
 }
 

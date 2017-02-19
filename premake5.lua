@@ -78,12 +78,12 @@ filter({"configurations:Release", "platforms:Windows"})
 
 filter("platforms:Linux")
   system("linux")
-  toolset("clang")
+  toolset("gcc")
 
 filter({"platforms:Linux", "language:C++"})
   buildoptions({
-    "-stdlib=libstdc++",
-    "-std=c++14",
+    -- "-stdlib=libstdc++",
+    "-std=c++1y",
   })
   links({
     "c++",

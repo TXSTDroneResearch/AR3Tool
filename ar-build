@@ -196,6 +196,7 @@ def build_opencv():
 
     opencv_path = os.path.join(THIRD_PARTY_PATH, 'opencv')
     build_path = os.path.join(opencv_path, 'build')
+    install_path = os.path.join(opencv_path, 'install')
     if sys.platform == 'win32':
         build_path += '_win32'
     else:
@@ -205,6 +206,7 @@ def build_opencv():
         -DBUILD_SHARED_LIBS=ON -DBUILD_WITH_STATIC_CRT=OFF \
         -DWITH_QT=OFF -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_FFMPEG=OFF \
         -DBUILD_EXAMPLES=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF"
+    cmake_args += " -DCMAKE_INSTALL_PREFIX=" + install_path
 
     # Create the build directory if it doesn't exist.
     if not os.path.exists(build_path):
@@ -220,22 +222,21 @@ def build_opencv():
     pcall(cmd, cwd=build_path)
 
     if sys.platform == 'win32':
-        cmd = [
+        res = pcall([
             'msbuild',
-            'OpenCV.sln',
+            'INSTALL.vcxproj',
             '/nologo',
             '/m',
             '/v:m',
             '/p:Configuration=Release',
-        ]
-
-        return pcall(cmd, cwd=build_path)
+        ], cwd=build_path)
+        
+        return res
     else:
         res = pcall([
             'make',
             '-j',
         ], cwd=build_path)
-
         if res != 0:
             return res
 

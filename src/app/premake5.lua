@@ -14,8 +14,6 @@ project("AR3Tool-app")
     }
   filter {}
 
-  
-
   filter("platforms:Windows")
     links({
       "libarcontroller",
@@ -23,18 +21,61 @@ project("AR3Tool-app")
       "libarsal",
     })
 
-    libdirs({project_root.."/third_party/opencv/build_win32/lib/Release"})
-    includedirs({project_root.."/third_party/opencv/build_win32"})
+    libdirs({
+      project_root.."/third_party/opencv/install/x64/vc14/lib",
+      project_root.."/third_party/ARLibs/mingw64/bin",
+      project_root.."/third_party/ffmpeg/msc140/bin"
+    })
   filter("platforms:Linux")
     links({
       "arcontroller",
       "ardiscovery",
       "arsal",
+
+      -- for gamepads
+      "udev",
     })
 
-    libdirs({project_root.."/third_party/opencv/build_linux/lib/Release"})
-    includedirs({project_root.."/third_party/opencv/build_linux"})
+    libdirs({
+      project_root.."/third_party/ARLibs/gcc/lib",
+      project_root.."/third_party/opencv/install/lib",
+      project_root.."/third_party/ffmpeg/gcc/lib",
+
+      -- Include local libs
+      -- "/usr/local/lib",
+    })
   filter {}
+
+  libdirs({project_root.."/third_party/opencv/install/x64/vc14/lib"})
+  includedirs({project_root.."/third_party/opencv/install/include"})
+
+  local cv_libs = {
+    "opencv_core",
+    "opencv_calib3d",
+    "opencv_features2d",
+    "opencv_flann",
+    "opencv_highgui",
+    "opencv_imgcodecs",
+    "opencv_imgproc",
+    "opencv_ml",
+    "opencv_objdetect",
+    "opencv_photo",
+    "opencv_shape",
+    "opencv_stitching",
+    "opencv_superres",
+    "opencv_video",
+    "opencv_videoio",
+    "opencv_videostab",
+  }
+
+  if os.get() == "windows" then
+    -- append 320 to lib names
+    for i, v in ipairs(cv_libs) do
+      cv_libs[i] = cv_libs[i] .. "320"
+    end
+  end
+
+  links(cv_libs)
 
   links({
     "libgamepad",
@@ -53,24 +94,6 @@ project("AR3Tool-app")
     "json",
     --]]
 
-    -- OpenCV
-    "opencv_core320",
-    "opencv_calib3d320",
-    "opencv_features2d320",
-    "opencv_flann320",
-    "opencv_highgui320",
-    "opencv_imgcodecs320",
-    "opencv_imgproc320",
-    "opencv_ml320",
-    "opencv_objdetect320",
-    "opencv_photo320",
-    "opencv_shape320",
-    "opencv_stitching320",
-    "opencv_superres320",
-    "opencv_video320",
-    "opencv_videoio320",
-    "opencv_videostab320",
-
     -- FFmpeg
     "avcodec",
     "avdevice",
@@ -88,24 +111,6 @@ project("AR3Tool-app")
   })
   includedirs({
     project_root.."/third_party/gflags/src",
-
-    project_root.."/third_party/opencv/include",
-    project_root.."/third_party/opencv/modules/calib3d/include",
-    project_root.."/third_party/opencv/modules/core/include",
-    project_root.."/third_party/opencv/modules/features2d/include",
-    project_root.."/third_party/opencv/modules/flann/include",
-    project_root.."/third_party/opencv/modules/highgui/include",
-    project_root.."/third_party/opencv/modules/imgcodecs/include",
-    project_root.."/third_party/opencv/modules/imgproc/include",
-    project_root.."/third_party/opencv/modules/ml/include",
-    project_root.."/third_party/opencv/modules/objdetect/include",
-    project_root.."/third_party/opencv/modules/photo/include",
-    project_root.."/third_party/opencv/modules/shape/include",
-    project_root.."/third_party/opencv/modules/stitching/include",
-    project_root.."/third_party/opencv/modules/superres/include",
-    project_root.."/third_party/opencv/modules/video/include",
-    project_root.."/third_party/opencv/modules/videoio/include",
-    project_root.."/third_party/opencv/modules/videostab/include",
 
     project_root.."/third_party/ARLibs/include",
     project_root.."/third_party/Eigen/include",
