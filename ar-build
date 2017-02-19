@@ -222,7 +222,7 @@ def build_opencv():
     pcall(cmd, cwd=build_path)
 
     if sys.platform == 'win32':
-        res = pcall([
+        return pcall([
             'msbuild',
             'INSTALL.vcxproj',
             '/nologo',
@@ -230,8 +230,6 @@ def build_opencv():
             '/v:m',
             '/p:Configuration=Release',
         ], cwd=build_path)
-        
-        return res
     else:
         res = pcall([
             'make',
