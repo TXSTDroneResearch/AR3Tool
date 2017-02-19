@@ -11,3 +11,4 @@ project("libgamepad")
     "libgamepad/gamepad.c",
     "libgamepad/gamepad.h",
   })
+  warnings("Off")
