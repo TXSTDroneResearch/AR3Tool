@@ -6,38 +6,41 @@ os:
   - linux
 
 env:
-  - CONFIG=debug
-  - CONFIG=release
-
   global:
     - QTDIR=/opt/qt58
+  matrix:
+    - CONFIG=debug
+    - CONFIG=release
 
 dist: trusty
 sudo: required
 addons:
   apt:
     sources:
+      # - llvm-toolchain-trusty
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty
       - sourceline: 'ppa:beineri/opt-qt58-trusty'
+      - sourceline: 'ppa:mc3man/trusty-media'
     packages:
-      - clang-3.8
-      - clang-format-3.8
-      - llvm-3.8-dev
-      - libc++-dev
+      # - clang-3.8
+      # - clang-format-3.8
+      # - llvm-3.8-dev
+      # - libc++-dev
+      - libudev-dev
+      - libav-tools
       - qt58-meta-full
 
 git:
-  # Handled in cg-build
+  # Handled in ar-build
   submodules: false
 
 before_install:
 
 before_script:
   # Prepare environment (pull dependencies, build tools).
-  - travis_retry python cg-build.py setup
+  - travis_retry python ar-build setup
   - QT_ENV_SCRIPT=$(find /opt -name 'qt*-env.sh')
   - source $QT_ENV_SCRIPT
 
 script:
-  - python cg-build.py build --config=$CONFIG
+  - python ar-build build --config=$CONFIG

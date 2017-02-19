@@ -82,11 +82,10 @@ filter("platforms:Linux")
 
 filter({"platforms:Linux", "language:C++"})
   buildoptions({
-    -- "-stdlib=libstdc++",
     "-std=c++1y",
   })
   links({
-    "c++",
+    -- "c++",
   })
 
 filter("platforms:Windows")
