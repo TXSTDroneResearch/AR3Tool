@@ -39,6 +39,7 @@ addons:
       - libavformat-dev
       - libavresample-dev
       - libavutil-dev
+      - libswscale-dev
       - qt58-meta-full
 
 git:
