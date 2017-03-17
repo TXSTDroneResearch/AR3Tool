@@ -16,5 +16,7 @@ project("AR3Tool-base")
   })
   includedirs({
     project_root.."/third_party/gflags/src",
+
+    project_root.."/third_party/Eigen/include",
   })
   files({"*.h", "*.cc"})

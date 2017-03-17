@@ -53,6 +53,8 @@ class StreamDecoder {
   const uint32_t GetWidth();
   const uint32_t GetHeight();
 
+  bool TryGetFrame(DecodedFrame_t* decoded_frame);
+
   // Retrieves a successfully decoded frame into decoded_frame. Returns 0 on
   // success, a negative value on failure, or a positive value on shutdown.
   int GetFrame(DecodedFrame_t* decoded_frame);

@@ -65,10 +65,12 @@ struct DeviceState_t {
   double latitude, longitude, altitude;
   double alt_hiprecision;
 
+  uint8_t camera_stabilization;  // bitfield: pitch | roll
   float camera_fov;
   int8_t camera_pan, camera_tilt;
   float camera_pan_min, camera_pan_max;
   float camera_tilt_min, camera_tilt_max;
+  float camera_tilt_maxvel, camera_pan_maxvel;
 };
 
 // Converts a given Euler angles to Rotation Matrix
@@ -120,7 +122,7 @@ cv::Point3f operator*(cv::Mat M, const cv::Point3f& p) {
 
 template <typename T>
 T deg2rad(T deg) {
-  return deg * CV_PI / 180.0;
+  return deg * T(CV_PI / 180.0);
 }
 
 #if DISPLAY_OPENCV
@@ -128,6 +130,11 @@ void* DisplayThread(void* param) {
   DeviceState_t* device_state = reinterpret_cast<DeviceState_t*>(param);
   StreamDecoder* stream_decoder = device_state->stream_decoder;
   cv::namedWindow("Stream Display");
+
+  // Test object
+  // Location: My house!
+  drone::Object test_object;
+  test_object.set_location({0.0, 0.0}, 0.0);
 
   DecodedFrame_t frame;
   std::memset(&frame, 0, sizeof(frame));
@@ -181,16 +188,27 @@ void* DisplayThread(void* param) {
         // 515.752791   0.000000 428.777745
         //   0.000000 506.591215 243.577033
         //   0.000000   0.000000   1.000000
+        // 1616.309237 0.000000    443.578380
+        // 0.000000    1348.222385 225.181973
+        // 0.000000    0.000000    1.000000
         double _cm[9] = {
-            515.752791, 0, 428, 0, 506.591215, 240, 0, 0, 1,
+            1616.309237, 0, 428, 0, 1348.222385, 240, 0, 0, 1,
         };
         cv::Mat cam_matrix = cv::Mat(3, 3, CV_64FC1, _cm);
 
         // Rotation matrix: How much the virtual camera should be rotated to
         // match the orientation of the physical camera
-        cv::Mat rot_matrix = ConvertEulerToMatrixYPR(
-            cv::Mat(cv::Vec3d(-device_state->yaw + (CV_PI * 3.0 / 2.0),
-                              -device_state->pitch, -device_state->roll)));
+        // Pitch and roll can be stabilized by the drone. If stabilization is
+        // enabled, pitch is always stabilized and roll is optional.
+        float pitch = device_state->camera_stabilization & 0x2
+                          ? -device_state->pitch
+                          : -device_state->camera_tilt;
+
+        float roll =
+            device_state->camera_stabilization & 0x1 ? -device_state->roll : 0;
+
+        cv::Mat rot_matrix = ConvertEulerToMatrixYPR(cv::Mat(
+            cv::Vec3d(-device_state->yaw + (CV_PI * 3.0 / 2.0), pitch, roll)));
 
         // clang-format off
         cv::Mat Rp = (cv::Mat_<double>(3, 3) <<
@@ -206,9 +224,21 @@ void* DisplayThread(void* param) {
         cv::Vec3d rvec;
         cv::Rodrigues(rot_matrix, rvec);
 
+        auto delta = test_object.GetLinearDelta(
+            {device_state->longitude, device_state->latitude},
+            device_state->alt_hiprecision);
+
+        auto stats_del =
+            cv::format("DEL: %f %f %f", delta.x(), delta.y(), delta.z());
+
+        cv::putText(mat, stats_del, cv::Point(20, 120),
+                    cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
+                    cv::Scalar(255, 255, 255));
+
         std::vector<cv::Point3f> points3d(4);
         points3d[3] = {0, 0, 0};  // origin
-        points3d[0] = points3d[3] + cv::Point3f(1, 0, 0);
+        // points3d[0] = points3d[3] + cv::Point3f(1, 0, 0);
+        points3d[0] = {(float)delta.y(), (float)delta.z(), (float)delta.x()};
         points3d[1] = points3d[3] + cv::Point3f(0, 1, 0);
         points3d[2] = points3d[3] + cv::Point3f(0, 0, 1);
 
@@ -275,11 +305,11 @@ void* DisplayThread(void* param) {
                       cv::Scalar(0, 255, 0));
           cv::drawChessboardCorners(mat, board_size, image_points, found);
 
-          if (calibration_state->snap_requested) {
+          // if (calibration_state->snap_requested) {
             // Store in array.
             ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Snapshotting checkerboard...");
             calibration_state->image_points.push_back(image_points);
-          }
+          // }
         } else {
           cv::putText(mat, "failed to find checkerboard", cv::Point(20, 100),
                       cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
@@ -292,8 +322,8 @@ void* DisplayThread(void* param) {
           }
         }
 
-        if (calibration_state->matgen_requested &&
-            calibration_state->image_points.size() > 0) {
+        if (/* calibration_state->matgen_requested && */
+            calibration_state->image_points.size() > 16) {
           ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Generating matrix...");
 
           // calibrate camera.
@@ -302,8 +332,9 @@ void* DisplayThread(void* param) {
           // build object points (the base, CV will find camera pos from this)
           // Note: If we actually calculate the base position, rvec and tvec
           // won't be useless!
+          // TODO: Find the real square size in metres.
           std::vector<cv::Vec3f> obj_corners;
-          float square_size = 1.f;  // in metres(?)
+          float square_size = 0.01984375f;  // in metres(?)
           for (int i = 0; i < board_size.height; i++) {
             for (int j = 0; j < board_size.width; j++) {
               obj_corners.push_back(
@@ -335,6 +366,8 @@ void* DisplayThread(void* param) {
                       cam_matrix.at<double>(1, 0), cam_matrix.at<double>(1, 1),
                       cam_matrix.at<double>(1, 2), cam_matrix.at<double>(2, 0),
                       cam_matrix.at<double>(2, 1), cam_matrix.at<double>(2, 2));
+
+          calibration_state->image_points.clear();
         }
 
         // reset all request vars
@@ -629,6 +662,64 @@ void OnCommandReceived(eARCONTROLLER_DICTIONARY_KEY commandKey,
     }
   }
 
+  if ((commandKey ==
+       ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED) &&
+      (elementDictionary != NULL)) {
+    ARCONTROLLER_DICTIONARY_ARG_t* arg = NULL;
+    ARCONTROLLER_DICTIONARY_ELEMENT_t* element = NULL;
+    HASH_FIND_STR(elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY,
+                  element);
+    if (element != NULL) {
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE,
+          arg);
+      if (arg != NULL) {
+        auto val = arg->value.I32;
+        if (val ==
+            ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE_ROLL_PITCH) {
+          device_state->camera_stabilization = 0x3;
+        } else if (
+            val ==
+            ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE_PITCH) {
+          device_state->camera_stabilization = 0x2;
+        } else if (
+            val ==
+            ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE_ROLL) {
+          device_state->camera_stabilization = 0x1;
+        } else {
+          device_state->camera_stabilization = 0x0;
+        }
+      }
+    }
+  }
+
+  // Camera Velocity
+  if ((commandKey ==
+       ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE) &&
+      (elementDictionary != NULL)) {
+    ARCONTROLLER_DICTIONARY_ARG_t* arg = NULL;
+    ARCONTROLLER_DICTIONARY_ELEMENT_t* element = NULL;
+    HASH_FIND_STR(elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY,
+                  element);
+    if (element != NULL) {
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE_MAX_TILT,
+          arg);
+      if (arg != NULL) {
+        device_state->camera_tilt_maxvel = arg->value.Float;
+      }
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_CAMERASTATE_VELOCITYRANGE_MAX_PAN,
+          arg);
+      if (arg != NULL) {
+        device_state->camera_pan_maxvel = arg->value.Float;
+      }
+    }
+  }
+
   // if the command received is a flying state changed
   if ((commandKey ==
        ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED) &&
@@ -817,10 +908,11 @@ void* GamepadInputThread(void* param) {
     if (controller_error != ARCONTROLLER_OK) {
       break;
     }
-    
+
     GamepadUpdate();
     if (state == ARCONTROLLER_DEVICE_STATE_RUNNING &&
         GamepadIsConnected(GAMEPAD_0)) {
+
       if (device_state->flying_state ==
           ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED) {
         if (GamepadButtonTriggered(GAMEPAD_0, BUTTON_START)) {
@@ -838,30 +930,30 @@ void* GamepadInputThread(void* param) {
         GamepadStickNormXY(GAMEPAD_0, STICK_LEFT, &ls.x(), &ls.y());
         GamepadStickNormXY(GAMEPAD_0, STICK_RIGHT, &rs.x(), &rs.y());
 
+        // Cube the sticks for fine-tune control
+        ls = ls.cwiseProduct(ls).cwiseProduct(ls);
+        // rs = rs.cwiseProduct(rs).cwiseProduct(rs);
+
         // triggers
         float lt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_LEFT);
         float rt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_RIGHT);
 
-        // Cube the sticks for fine-tune control
-        ls = ls.cwiseProduct(ls).cwiseProduct(ls);
-        rs = rs.cwiseProduct(rs).cwiseProduct(rs);
-        lt = lt * lt * lt;
-        rt = rt * rt * rt;
-
         // Scale up
         ls *= 100;
-        rs *= 100;
 
         lt *= -100;
         rt *= 100;
 
         int8_t roll = (int8_t)ls.x();
         int8_t pitch = (int8_t)ls.y();
-        int8_t yaw = (int8_t)rs.x();
+        int8_t yaw = (int8_t)rs.x() * 100;
         int8_t gaz = (int8_t)(lt + rt);
 
         drone->setPilotingPCMD(drone, 1, roll, pitch, yaw, gaz, 0);
       }
+
+      // float tilt = rs.y() * device_state->camera_tilt_maxvel;
+      // drone->setCameraVelocityTilt(drone, tilt);
     }
 
     ARSAL_Time_Sleep(10);

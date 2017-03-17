@@ -4,6 +4,8 @@
 #include <Eigen/Dense>
 #include <memory>
 
+#include "base/math.h"
+
 namespace drone {
 
 // Represents a foreign object
@@ -12,13 +14,23 @@ class Object {
   Object();
   ~Object();
 
-  void set_location(Eigen::Vector3d location) { location_ = location; }
-  const Eigen::Vector3d& get_location() const { return location_; }
+  // Returns the delta from (origin, altitude) -> our position
+  Eigen::Vector3d GetLinearDelta(const Eigen::Vector2d& origin,
+                                 double altitude) const;
+
+  // Sets the location in radians (long, lat, alt - meters)
+  void set_location(Eigen::Vector2d location, double altitude) {
+    location_ = location;
+    altitude_ = altitude;
+  }
+
+  const Eigen::Vector2d& get_location() const { return location_; }
+  double get_altitude() const { return altitude_; }
 
  private:
-  // Location in GPS: lat, long, alt
-  // altitude is relative to ground level
-  Eigen::Vector3d location_;
+  // Location in GPS: long, lat
+  Eigen::Vector2d location_;
+  double altitude_;
 };
 
 }  // namespace drone
