@@ -15,6 +15,7 @@ class StreamDisplay : public QWidget {
 
  private:
 };
-}
+
+}  // namespace gui
 
 #endif  // _GUI_STREAM_DISPLAY_H_

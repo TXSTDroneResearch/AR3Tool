@@ -50,6 +50,7 @@ bool StreamDecoder::Initialize(size_t max_frames, const uint8_t* sps_buffer,
     avcodec_register_all();
   }
 
+  av_log_set_level(AV_LOG_ERROR);
   auto codec = avcodec_find_decoder(AV_CODEC_ID_H264);
   if (!codec) {
     ARSAL_PRINT(ARSAL_PRINT_ERROR, TAG, "Failed to find libav H264 codec!");
@@ -182,7 +183,7 @@ int StreamDecoder::GetFrame(DecodedFrame_t* decoded_frame) {
       return -2;
     }
   } else {
-    // Allocate a buffer.
+    // Allocate a RGB buffer.
     decoded_frame->data = new uint8_t[frame->width * frame->height * 3];
     decoded_frame->data_capacity = frame->width * frame->height * 3;
   }

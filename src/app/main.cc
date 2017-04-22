@@ -1,6 +1,7 @@
 #include <errno.h>
 #include <signal.h>
 #include <sys/types.h>
+#include <chrono>
 #include <cstring>
 
 #include <vector>
@@ -14,7 +15,7 @@ extern "C" {
 #include <opencv2/core.hpp>
 #include <opencv2/opencv.hpp>
 
-#include "drone/object.h"
+#include "drone/region.h"
 #include "drone/stream_decoder.h"
 
 #include "third_party/libgamepad/gamepad.h"
@@ -32,6 +33,8 @@ enum ControlState {
   CONTROLSTATE_COMMANDING,
   CONTROLSTATE_CALIBRATING,
 };
+
+const ControlState initial_state_ = CONTROLSTATE_COMMANDING;
 
 struct CalibrationState_t {
   // lame way to request captures in calibration mode :|
@@ -61,9 +64,11 @@ struct DeviceState_t {
 
   uint32_t flying_state;
   uint8_t battery;
-  float pitch, yaw, roll;  // yaw: [-pi, pi], pitch & roll: [-pi/2, pi/2]
+  float vel_x, vel_y, vel_z;  // velocity: (+N/S), (+E/W), +down
+  float pitch, yaw, roll;     // yaw: [-pi, pi], pitch & roll: [-pi/2, pi/2]
   double latitude, longitude, altitude;
   double alt_hiprecision;
+  int gps_status;
 
   uint8_t camera_stabilization;  // bitfield: pitch | roll
   float camera_fov;
@@ -74,7 +79,6 @@ struct DeviceState_t {
 };
 
 // Converts a given Euler angles to Rotation Matrix
-// From (X=forward, Y=up, Z=right) to pinhole (X=right, Y=down, Z=forward)
 cv::Mat ConvertEulerToMatrixYPR(const cv::Mat& euler) {
   double ch = cos(euler.at<double>(0));
   double sh = sin(euler.at<double>(0));
@@ -120,11 +124,6 @@ cv::Point3f operator*(cv::Mat M, const cv::Point3f& p) {
   return cv::Point3f(dst(0, 0), dst(1, 0), dst(2, 0));
 }
 
-template <typename T>
-T deg2rad(T deg) {
-  return deg * T(CV_PI / 180.0);
-}
-
 #if DISPLAY_OPENCV
 void* DisplayThread(void* param) {
   DeviceState_t* device_state = reinterpret_cast<DeviceState_t*>(param);
@@ -132,9 +131,9 @@ void* DisplayThread(void* param) {
   cv::namedWindow("Stream Display");
 
   // Test object
-  // Location: My house!
-  drone::Object test_object;
-  test_object.set_location({0.0, 0.0}, 0.0);
+  drone::Region test_region;
+  test_region.add_point_deg({0.0, 0.0, 0.0});  // House
+  // test_region.add_point_deg({0.0, 0.0, 0.0});  // Centennial
 
   DecodedFrame_t frame;
   std::memset(&frame, 0, sizeof(frame));
@@ -144,17 +143,27 @@ void* DisplayThread(void* param) {
       break;
     }
 
+    char key = cv::waitKey(1);
     if (ret == 0) {
       auto width = frame.width;
       auto height = frame.height;
 
       cv::Mat mat(height, width, CV_8UC3, frame.data);
       if (device_state->control_state == CONTROLSTATE_COMMANDING) {
-        auto stats_loc =
-            cv::format("GPS: %f %f %f", device_state->latitude,
-                       device_state->longitude, device_state->altitude);
+        cv::String stats_loc;
+        if (device_state->gps_status != 0) {
+          stats_loc =
+              cv::format("GPS: %f %f %f", device_state->latitude,
+                         device_state->longitude, device_state->altitude);
+        } else {
+          stats_loc =
+              cv::format("GPS: NO DATA", device_state->latitude,
+                         device_state->longitude, device_state->altitude);
+        }
         auto stats_rot = cv::format("YPR: %f %f %f", device_state->yaw,
                                     device_state->pitch, device_state->roll);
+        auto stats_vel = cv::format("VEL: %f %f %f", device_state->vel_x,
+                                    device_state->vel_y, device_state->vel_z);
         auto stats_cam = cv::format("CAM: %d %d", device_state->camera_tilt,
                                     device_state->camera_pan);
         auto stats_alt = cv::format("ALT: %f", device_state->alt_hiprecision);
@@ -169,13 +178,16 @@ void* DisplayThread(void* param) {
         cv::putText(mat, stats_rot, cv::Point(20, 40),
                     cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
                     cv::Scalar(255, 255, 255));
-        cv::putText(mat, stats_cam, cv::Point(20, 60),
+        cv::putText(mat, stats_vel, cv::Point(20, 60),
                     cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
                     cv::Scalar(255, 255, 255));
-        cv::putText(mat, stats_alt, cv::Point(20, 80),
+        cv::putText(mat, stats_cam, cv::Point(20, 80),
                     cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
                     cv::Scalar(255, 255, 255));
-        cv::putText(mat, stats_bat, cv::Point(20, 100),
+        cv::putText(mat, stats_alt, cv::Point(20, 100),
+                    cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
+                    cv::Scalar(255, 255, 255));
+        cv::putText(mat, stats_bat, cv::Point(20, 120),
                     cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
                     cv::Scalar(255, 255, 255));
 
@@ -185,27 +197,26 @@ void* DisplayThread(void* param) {
         // [fx, 0, cx]
         // [0, fy, cy]
         // [0,  0,  1]
-        // 515.752791   0.000000 428.777745
-        //   0.000000 506.591215 243.577033
+        // 439.705726   0.000000 440.135793
+        //   0.000000 423.592382 281.677219
         //   0.000000   0.000000   1.000000
-        // 1616.309237 0.000000    443.578380
-        // 0.000000    1348.222385 225.181973
-        // 0.000000    0.000000    1.000000
         double _cm[9] = {
-            1616.309237, 0, 428, 0, 1348.222385, 240, 0, 0, 1,
+            439.705726, 0, 440, 0, 423.592382, 280, 0, 0, 1,
         };
         cv::Mat cam_matrix = cv::Mat(3, 3, CV_64FC1, _cm);
+        cv::Vec4d dcoeffs(0, 0, 0, 0);
 
         // Rotation matrix: How much the virtual camera should be rotated to
         // match the orientation of the physical camera
         // Pitch and roll can be stabilized by the drone. If stabilization is
         // enabled, pitch is always stabilized and roll is optional.
+        float cam_tilt = -deg2rad((float)device_state->camera_tilt);
         float pitch = device_state->camera_stabilization & 0x2
-                          ? -device_state->pitch
-                          : -device_state->camera_tilt;
+                          ? cam_tilt
+                          : -device_state->pitch + cam_tilt;
 
         float roll =
-            device_state->camera_stabilization & 0x1 ? -device_state->roll : 0;
+            device_state->camera_stabilization & 0x1 ? 0 : -device_state->roll;
 
         cv::Mat rot_matrix = ConvertEulerToMatrixYPR(cv::Mat(
             cv::Vec3d(-device_state->yaw + (CV_PI * 3.0 / 2.0), pitch, roll)));
@@ -224,32 +235,36 @@ void* DisplayThread(void* param) {
         cv::Vec3d rvec;
         cv::Rodrigues(rot_matrix, rvec);
 
-        auto delta = test_object.GetLinearDelta(
-            {device_state->longitude, device_state->latitude},
-            device_state->alt_hiprecision);
+        // Delta: (W/E, N/S, altitude)
+        auto delta =
+            test_region.GetLinearDelta(0, {deg2rad(device_state->longitude),
+                                           deg2rad(device_state->latitude),
+                                           device_state->alt_hiprecision});
 
         auto stats_del =
             cv::format("DEL: %f %f %f", delta.x(), delta.y(), delta.z());
 
-        cv::putText(mat, stats_del, cv::Point(20, 120),
+        cv::putText(mat, stats_del, cv::Point(20, 140),
                     cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.f,
                     cv::Scalar(255, 255, 255));
 
-        std::vector<cv::Point3f> points3d(4);
-        points3d[3] = {0, 0, 0};  // origin
-        // points3d[0] = points3d[3] + cv::Point3f(1, 0, 0);
-        points3d[0] = {(float)delta.y(), (float)delta.z(), (float)delta.x()};
-        points3d[1] = points3d[3] + cv::Point3f(0, 1, 0);
-        points3d[2] = points3d[3] + cv::Point3f(0, 0, 1);
+        // Point delta: (N/S, altitude, E/W)
+        std::vector<cv::Point3f> points3d(1);
+        points3d[0] = {(float)delta.y(), (float)delta.z(),
+                       (float)delta.x()};  // origin
+        // points3d[0] = {1.5f, (float)delta.z(), 0.f};
+        points3d.push_back(points3d[0] + cv::Point3f(0.f, 0.f, 0.f));
+        points3d.push_back(points3d[0] + cv::Point3f(1.f, 0.f, 0.f));
+        points3d.push_back(points3d[0] + cv::Point3f(0.f, 0.f, 1.f));
+        points3d.push_back(points3d[0] + cv::Point3f(1.f, 0.f, 1.f));
 
         // TODO(justin): projectPoints does not do culling. Points behind the
         // camera are still projected onscreen (up-side-down)
-        std::vector<cv::Point2f> points2d(4);
+        std::vector<cv::Point2f> points2d(points3d.size());
         cv::Vec3d tvec(0, 0, 0);
-        cv::Vec4d dcoeffs(0, 0, 0, 0);
         cv::projectPoints(points3d, rvec, tvec, cam_matrix, dcoeffs, points2d);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < points2d.size(); i++) {
 #if 0
           auto row = cv::format("%f %f %f", rot_matrix.at<double>(i, 0),
                                 rot_matrix.at<double>(i, 1),
@@ -259,9 +274,8 @@ void* DisplayThread(void* param) {
                       cv::Scalar(255, 255, 255));
 #endif
 
-          // BGR color format
-          cv::Scalar col(0);
-          col[i] = 255;
+          cv::Scalar col(0.0);
+          col[(i - 1) % 3] = 255;
           cv::circle(mat, points2d[i], 10, col, -1);
         }
       } else if (device_state->control_state == CONTROLSTATE_CALIBRATING) {
@@ -295,7 +309,9 @@ void* DisplayThread(void* param) {
 
         // TODO(justin): We should really be telling the drone to take a picture
         // and calibrating based off of that, but I'm too lazy :)
-        cv::Size board_size(6, 9);
+        // Board size in INSIDE CORNERS of black squares. If you have the wrong
+        // size, OpenCV won't see the board. (height, width)
+        cv::Size board_size(9, 14);
         std::vector<cv::Vec2f> image_points;
         bool found =
             cv::findChessboardCorners(grayscale, board_size, image_points);
@@ -306,9 +322,9 @@ void* DisplayThread(void* param) {
           cv::drawChessboardCorners(mat, board_size, image_points, found);
 
           // if (calibration_state->snap_requested) {
-            // Store in array.
-            ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Snapshotting checkerboard...");
-            calibration_state->image_points.push_back(image_points);
+          // Store in array.
+          ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Snapshotting checkerboard...");
+          calibration_state->image_points.push_back(image_points);
           // }
         } else {
           cv::putText(mat, "failed to find checkerboard", cv::Point(20, 100),
@@ -332,9 +348,8 @@ void* DisplayThread(void* param) {
           // build object points (the base, CV will find camera pos from this)
           // Note: If we actually calculate the base position, rvec and tvec
           // won't be useless!
-          // TODO: Find the real square size in metres.
           std::vector<cv::Vec3f> obj_corners;
-          float square_size = 0.01984375f;  // in metres(?)
+          float square_size = 0.0179f;  // in metres
           for (int i = 0; i < board_size.height; i++) {
             for (int j = 0; j < board_size.width; j++) {
               obj_corners.push_back(
@@ -358,14 +373,20 @@ void* DisplayThread(void* param) {
           double rms = cv::calibrateCamera(
               obj_points, calibration_state->image_points, image_size,
               cam_matrix, dist_coeffs, rvecs, tvecs);
-          ARSAL_PRINT(ARSAL_PRINT_INFO, TAG,
-                      "Calibrated camera. RMS: %f\n"
-                      "cam mat:\n%f %f %f\n%f %f %f\n%f %f %f",
-                      rms, cam_matrix.at<double>(0, 0),
-                      cam_matrix.at<double>(0, 1), cam_matrix.at<double>(0, 2),
-                      cam_matrix.at<double>(1, 0), cam_matrix.at<double>(1, 1),
-                      cam_matrix.at<double>(1, 2), cam_matrix.at<double>(2, 0),
-                      cam_matrix.at<double>(2, 1), cam_matrix.at<double>(2, 2));
+          ARSAL_PRINT(
+              ARSAL_PRINT_INFO, TAG,
+              "Calibrated camera. RMS: %f\n"
+              "cam mat:\n%f %f %f\n%f %f %f\n%f %f %f\n"
+              "Distortion: %f %f %f %f %f %f %f %f",
+              rms, cam_matrix.at<double>(0, 0), cam_matrix.at<double>(0, 1),
+              cam_matrix.at<double>(0, 2), cam_matrix.at<double>(1, 0),
+              cam_matrix.at<double>(1, 1), cam_matrix.at<double>(1, 2),
+              cam_matrix.at<double>(2, 0), cam_matrix.at<double>(2, 1),
+              cam_matrix.at<double>(2, 2), dist_coeffs.at<double>(0, 0),
+              dist_coeffs.at<double>(0, 1), dist_coeffs.at<double>(0, 2),
+              dist_coeffs.at<double>(0, 3), dist_coeffs.at<double>(0, 4),
+              dist_coeffs.at<double>(0, 5), dist_coeffs.at<double>(0, 6),
+              dist_coeffs.at<double>(0, 7));
 
           calibration_state->image_points.clear();
         }
@@ -379,7 +400,6 @@ void* DisplayThread(void* param) {
       // Send the pixel data to the display
       cv::cvtColor(mat, mat, cv::COLOR_RGB2BGR);
       cv::imshow("Stream Display", mat);
-      cv::waitKey(5);
     }
   }
 
@@ -521,6 +541,38 @@ void OnCommandReceived(eARCONTROLLER_DICTIONARY_KEY commandKey,
   }
 
   if ((commandKey ==
+       ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED) &&
+      (elementDictionary != NULL)) {
+    ARCONTROLLER_DICTIONARY_ARG_t* arg = NULL;
+    ARCONTROLLER_DICTIONARY_ELEMENT_t* element = NULL;
+    HASH_FIND_STR(elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY,
+                  element);
+    if (element != NULL) {
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDX,
+          arg);
+      if (arg != NULL) {
+        device_state->vel_x = arg->value.Float;
+      }
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDY,
+          arg);
+      if (arg != NULL) {
+        device_state->vel_y = arg->value.Float;
+      }
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_SPEEDCHANGED_SPEEDZ,
+          arg);
+      if (arg != NULL) {
+        device_state->vel_z = arg->value.Float;
+      }
+    }
+  }
+
+  if ((commandKey ==
        ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_ATTITUDECHANGED) &&
       (elementDictionary != NULL)) {
     ARCONTROLLER_DICTIONARY_ARG_t* arg = NULL;
@@ -580,6 +632,24 @@ void OnCommandReceived(eARCONTROLLER_DICTIONARY_KEY commandKey,
           arg);
       if (arg != NULL) {
         device_state->altitude = arg->value.Double;
+      }
+    }
+  }
+
+  if ((commandKey ==
+       ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GPSFIXSTATECHANGED) &&
+      (elementDictionary != NULL)) {
+    ARCONTROLLER_DICTIONARY_ARG_t* arg = NULL;
+    ARCONTROLLER_DICTIONARY_ELEMENT_t* element = NULL;
+    HASH_FIND_STR(elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY,
+                  element);
+    if (element != NULL) {
+      HASH_FIND_STR(
+          element->arguments,
+          ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GPSFIXSTATECHANGED_FIXED,
+          arg);
+      if (arg != NULL) {
+        device_state->gps_status = arg->value.U8;
       }
     }
   }
@@ -758,6 +828,7 @@ static void SignalHandler(int signal) {
 }
 #endif
 
+#if 0
 int ReadArgument(char* buf, size_t len) {
   char* s = buf;
   char c = getchar();
@@ -781,7 +852,6 @@ int ReadArgument(char* buf, size_t len) {
   return 0;
 }
 
-#if 0
 void* InputThread(void* param) {
   ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Input thread starting...");
 
@@ -901,21 +971,28 @@ void* GamepadInputThread(void* param) {
   eARCONTROLLER_ERROR controller_error;
   eARCONTROLLER_DEVICE_STATE state;
 
+  double dt = 0.01;
+  double cam_dt = 0.0;
   auto drone = device_state->controller->aRDrone3;
   while (device_state->running) {
+    auto start = std::chrono::high_resolution_clock::now();
+
     state = ARCONTROLLER_Device_GetState(device_state->controller,
                                          &controller_error);
     if (controller_error != ARCONTROLLER_OK) {
       break;
     }
 
+    char key = cv::waitKey(10);
     GamepadUpdate();
-    if (state == ARCONTROLLER_DEVICE_STATE_RUNNING &&
-        GamepadIsConnected(GAMEPAD_0)) {
-
+    if (state == ARCONTROLLER_DEVICE_STATE_RUNNING) {
       if (device_state->flying_state ==
           ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED) {
         if (GamepadButtonTriggered(GAMEPAD_0, BUTTON_START)) {
+          drone->sendPilotingTakeOff(drone);
+        }
+
+        if (key == 't') {
           drone->sendPilotingTakeOff(drone);
         }
       } else {
@@ -925,38 +1002,54 @@ void* GamepadInputThread(void* param) {
           drone->sendPilotingEmergency(drone);
         }
 
-        // sticks
-        Eigen::Vector2f ls, rs;
-        GamepadStickNormXY(GAMEPAD_0, STICK_LEFT, &ls.x(), &ls.y());
-        GamepadStickNormXY(GAMEPAD_0, STICK_RIGHT, &rs.x(), &rs.y());
-
-        // Cube the sticks for fine-tune control
-        ls = ls.cwiseProduct(ls).cwiseProduct(ls);
-        // rs = rs.cwiseProduct(rs).cwiseProduct(rs);
+        if (key == 't') {
+          drone->sendPilotingLanding(drone);
+        } else if (key == 'e') {
+          drone->sendPilotingEmergency(drone);
+        }
 
         // triggers
-        float lt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_LEFT);
-        float rt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_RIGHT);
+        if (GamepadIsConnected(GAMEPAD_0)) {
+          // sticks
+          Eigen::Vector2f ls, rs;
+          GamepadStickNormXY(GAMEPAD_0, STICK_LEFT, &ls.x(), &ls.y());
+          GamepadStickNormXY(GAMEPAD_0, STICK_RIGHT, &rs.x(), &rs.y());
 
-        // Scale up
-        ls *= 100;
+          // Cube the sticks for fine-tune control
+          ls = ls.cwiseProduct(ls).cwiseProduct(ls);
+          rs = rs.cwiseProduct(rs).cwiseProduct(rs);
 
-        lt *= -100;
-        rt *= 100;
+          float lt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_LEFT);
+          float rt = GamepadTriggerLength(GAMEPAD_0, TRIGGER_RIGHT);
 
-        int8_t roll = (int8_t)ls.x();
-        int8_t pitch = (int8_t)ls.y();
-        int8_t yaw = (int8_t)rs.x() * 100;
-        int8_t gaz = (int8_t)(lt + rt);
+          // Scale up
+          lt *= -100;
+          rt *= 100;
 
-        drone->setPilotingPCMD(drone, 1, roll, pitch, yaw, gaz, 0);
+          int8_t roll = (int8_t)(ls.x() * 100.0);
+          int8_t pitch = (int8_t)(ls.y() * 100.0);
+          int8_t yaw = (int8_t)(rs.x() * 100.0);
+          int8_t gaz = (int8_t)(lt + rt);
+
+          drone->setPilotingPCMD(drone, 1, roll, pitch, yaw, gaz, 0);
+        }
       }
 
-      // float tilt = rs.y() * device_state->camera_tilt_maxvel;
-      // drone->setCameraVelocityTilt(drone, tilt);
+// CAUTION: Enabling this code freezes the drone! Yay!
+#if 0
+      cam_dt += dt;
+      if (cam_dt > 0.15) {
+        cam_dt = 0.0;
+        double tilt_del = rs.y() * 360.0 * 2.0 * dt;
+        drone->setCameraOrientationV2Tilt(drone,
+                                          device_state->camera_tilt + tilt_del);
+      }
+#endif
     }
 
-    ARSAL_Time_Sleep(10);
+    std::chrono::duration<double> delta =
+        std::chrono::high_resolution_clock::now() - start;
+    dt = delta.count();
   }
 
   return nullptr;
@@ -1112,7 +1205,7 @@ int main(int argc, char* argv[]) {
 
   if (status == 0) {
     ARSAL_PRINT(ARSAL_PRINT_INFO, TAG, "Device is now in the running state.");
-    device_state.control_state = CONTROLSTATE_COMMANDING;
+    device_state.control_state = initial_state_;
 
     status = ARSAL_Thread_Create(&device_state.input_thread, GamepadInputThread,
                                  reinterpret_cast<void*>(&device_state));
